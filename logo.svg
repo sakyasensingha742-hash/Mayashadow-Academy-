@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+<rect width="520" height="150" rx="28" fill="#0b1020"/>
+<path d="M48 105V50l48-24 48 24v55M72 105V67h48v38M92 67v38" fill="none" stroke="url(#g)" stroke-width="9" stroke-linejoin="round"/>
+<text x="165" y="70" fill="#fff" font-family="Arial,sans-serif" font-size="34" font-weight="700">MAYA SHADOW</text>
+<text x="165" y="105" fill="#b8c2d9" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">ACADEMY</text>
+</svg>
