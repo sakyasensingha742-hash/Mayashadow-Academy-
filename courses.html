@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Maya Shadow Academy | Courses</title>
+
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .course-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 20px 80px;
+    }
+
+    .course-hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .course-hero h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      margin: 15px 0;
+    }
+
+    .course-hero p {
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.7;
+      opacity: .8;
+    }
+
+    .course-box {
+      margin: 35px 0;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .course-box h2 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    .course-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .course-meta span {
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.08);
+      font-size: 14px;
+    }
+
+    .module {
+      margin-top: 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .module summary {
+      cursor: pointer;
+      padding: 18px;
+      font-weight: 700;
+      list-style: none;
+      background: rgba(255,255,255,.045);
+    }
+
+    .module summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .module summary::before {
+      content: "＋";
+      margin-right: 10px;
+    }
+
+    .module[open] summary::before {
+      content: "−";
+    }
+
+    .class-list {
+      padding: 8px 18px 18px;
+    }
+
+    .class-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 5px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .class-item:last-child {
+      border-bottom: 0;
+    }
+
+    .class-number {
+      font-weight: 700;
+    }
+
+    .locked {
+      opacity: .65;
+    }
+
+    .course-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .course-button {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(90deg,#7c3aed,#06b6d4);
+      color: white;
+    }
+
+    .course-button.secondary {
+      background: rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 600px) {
+      .course-page {
+        padding: 70px 15px 50px;
+      }
+
+      .course-box {
+        padding: 18px;
+      }
+
+      .class-item {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <img src="logo.svg" alt="Maya Shadow Academy logo">
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#classes">Recorded Classes</a>
+    <a href="index.html#resources">Resources</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#buy">Store</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main class="course-page">
+
+  <section class="course-hero">
+    <span class="eyebrow">MAYA SHADOW ACADEMY</span>
+
+    <h1>
+      Learn. Create.<br>
+      Build Your Future.
+    </h1>
+
+    <p>
+      Professional step-by-step courses designed to take you
+      from software installation to complete animation production.
+    </p>
+  </section>
+
+
+  <!-- =========================================
+       COURSE 01
+       ========================================= -->
+
+  <section class="course-box">
+
+    <h2>🎬 Cartoon Animator 5 — Complete Animation Course</h2>
+
+    <p>
+      Beginner to Advanced training covering software setup,
+      character creation, rigging, animation, scene building
+      and complete story production.
+    </p>
+
+    <div class="course-meta">
+      <span>Beginner → Advanced</span>
+      <span>Practical Training</span>
+      <span>Character Building</span>
+      <span>Story Animation</span>
+    </div>
+
+
+    <!-- MODULE 01 -->
+
+    <details class="module">
+      <summary>Module 01 — Software Download & Installation</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span><span class="class-number">Class 01</span> — Course Introduction</span>
+          <span>▶</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 02</span> — Software Download</span>
+          <span>▶</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 03</span> — Software Installation</span>
+          <span>▶</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 04</span> — Basic Setup & Preferences</span>
+          <span>▶</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <!-- MODULE 02 -->
+
+    <details class="module">
+      <summary>Module 02 — Complete Software Overview</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span><span class="class-number">Class 05</span> — Complete Interface Overview</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 06</span> — Toolbar & Main Tools</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 07</span> — Stage & Timeline</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 08</span> — Content Manager</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 09</span> — Character Controls</span>
+          <span>🔒</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <!-- MODULE 03 -->
+
+    <details class="module">
+      <summary>Module 03 — Character Basics</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span><span class="class-number">Class 10</span> — Character Structure</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 11</span> — Character Types</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 12</span> — Character Template</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 13</span> — Character Layer Structure</span>
+          <span>🔒</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <!-- MODULE 04 -->
+
+    <details class="module">
+      <summary>Module 04 — Male Character Making</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span><span class="class-number">Class 14</span> — Male Character Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 15</span> — Male Face Marking</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 16</span> — Hair Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 17</span> — Eyes & Eyebrows</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 18</span> — Nose & Mouth</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 19</span> — Male Body Structure</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 20</span> — Shirt / T-Shirt</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 21</span> — Pant / Lungi / Dhoti</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 22</span> — Hand & Finger Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 23</span> — Foot & Shoe Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 24</span> — Complete Male Character Assembly</span>
+          <span>🔒</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <!-- MODULE 05 -->
+
+    <details class="module">
+      <summary>Module 05 — Female Character Making</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span><span class="class-number">Class 25</span> — Female Character Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 26</span> — Female Face Marking</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 27</span> — Hair & Hairstyle</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 28</span> — Eyes & Facial Features</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 29</span> — Female Body Structure</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 30</span> — Blouse Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 31</span> — Saree Setup</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 32</span> — Saree Layering</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 33</span> — Hand & Finger Design</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 34</span> — Jewellery & Accessories</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span><span class="class-number">Class 35</span> — Complete Female Character Assembly</span>
+          <span>🔒</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <!-- FUTURE MODULE PLACEHOLDERS -->
+
+    <details class="module">
+      <summary>Module 06 — Character Rigging & Advanced Setup</summary>
+
+      <div class="class-list">
+
+        <div class="class-item">
+          <span>Class 36 — Rigging Fundamentals</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span>Class 37 — Body Rigging</span>
+          <span>🔒</span>
+        </div>
+
+        <div class="class-item">
+          <span>Class 38 — Face Rigging</span>
+          <span>🔒</span>
+        </div>
+
+      </div>
+    </details>
+
+
+    <details class="module">
+      <summary>Module 07 — Facial Animation & Lip Sync</summary>
+
+      <div class="class-list">
+        <div class="class-item locked">
+          <span>More classes will be added</span>
+          <span>🔒</span>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="module">
+      <summary>Module 08 — Walking & Body Animation</summary>
+
+      <div class="class-list">
+        <div class="class-item locked">
+          <span>More classes will be added</span>
+          <span>🔒</span>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="module">
+      <summary>Module 09 — Scene & Camera Building</summary>
+
+      <div class="class-list">
+        <div class="class-item locked">
+          <span>More classes will be added</span>
+          <span>🔒</span>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="module">
+      <summary>Module 10 — Complete Story Animation Project</summary>
+
+      <div class="class-list">
+        <div class="class-item locked">
+          <span>More classes will be added</span>
+          <span>🔒</span>
+        </div>
+      </div>
+    </details>
+
+
+    <div class="course-actions">
+      <a href="#" class="course-button">View Course Details</a>
+      <a href="index.html#buy" class="course-button secondary">Buy Course</a>
+    </div>
+
+  </section>
+
+
+  <!-- FUTURE COURSES -->
+
+  <section class="course-box">
+
+    <h2>🎨 Photoshop — Complete Course</h2>
+
+    <p>
+      Software setup → Interface → Tools → Layers → Masking →
+      Character Design → Background Design → Thumbnail Design →
+      Advanced Projects.
+    </p>
+
+    <div class="course-actions">
+      <a href="#" class="course-button">Coming Soon</a>
+    </div>
+
+  </section>
+
+
+  <section class="course-box">
+
+    <h2>✒️ Adobe Illustrator — Complete Course</h2>
+
+    <p>
+      Software setup → Interface → Shape Tools → Pen Tool →
+      Vector Drawing → Character Design → Animation Assets →
+      Advanced Projects.
+    </p>
+
+    <div class="course-actions">
+      <a href="#" class="course-button">Coming Soon</a>
+    </div>
+
+  </section>
+
+
+  <section class="course-box">
+
+    <h2>🎙️ Adobe Audition — Voice & Audio Course</h2>
+
+    <p>
+      Recording → Noise Reduction → EQ → Compression →
+      Voice Processing → Mixing → Mastering.
+    </p>
+
+    <div class="course-actions">
+      <a href="#" class="course-button">Coming Soon</a>
+    </div>
+
+  </section>
+
+
+  <section class="course-box">
+
+    <h2>🎞️ DaVinci Resolve — Complete Video Editing</h2>
+
+    <p>
+      Media → Cut → Edit → Fusion → Color → Fairlight →
+      Audio Mixing → Final Export.
+    </p>
+
+    <div class="course-actions">
+      <a href="#" class="course-button">Coming Soon</a>
+    </div>
+
+  </section>
+
+
+  <section class="course-box">
+
+    <h2>🎬 Premiere Pro — Professional Video Editing</h2>
+
+    <p>
+      Beginner → Intermediate → Advanced → Complete Story
+      Editing Project.
+    </p>
+
+    <div class="course-actions">
+      <a href="#" class="course-button">Coming Soon</a>
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- WhatsApp -->
+
+<a
+  href="https://wa.me/917908279118?text=Hello%20Maya%20Shadow%20Academy%2C%20I%20want%20to%20know%20more%20about%20your%20courses."
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat with Maya Shadow Academy on WhatsApp"
+>
+  💬
+</a>
+
+</body>
+</html>
