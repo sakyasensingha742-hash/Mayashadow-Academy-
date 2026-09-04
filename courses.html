@@ -1,8 +1,8 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Maya Shadow Academy | Courses</title>
 
@@ -10,1071 +10,1249 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#0b0f14;
-  color:#fff;
-  line-height:1.6;
+font-family:Arial,Helvetica,sans-serif;
+background:#070b14;
+color:#f5f7ff;
+line-height:1.6;
 }
 
 button,
 input,
 select{
-  font:inherit;
+font:inherit;
 }
 
 button{
-  cursor:pointer;
+cursor:pointer;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+color:inherit;
+text-decoration:none;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(10,14,20,.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(7,11,20,.94);
+backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav{
-  max-width:1200px;
-  margin:auto;
-  min-height:72px;
-  padding:12px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+max-width:1250px;
+margin:auto;
+min-height:76px;
+padding:12px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:800;
-  font-size:19px;
+display:flex;
+align-items:center;
+gap:12px;
+font-size:19px;
+font-weight:800;
 }
 
 .brand img{
-  width:42px;
-  height:42px;
+width:44px;
+height:44px;
 }
 
 .nav-links{
-  display:flex;
-  gap:24px;
-  align-items:center;
+display:flex;
+align-items:center;
+gap:25px;
 }
 
 .nav-links a{
-  color:#dce3eb;
-  font-size:14px;
-  transition:.2s;
+color:#cbd2e4;
+font-size:15px;
+transition:.2s;
 }
 
 .nav-links a:hover{
-  color:#fff;
+color:#63dff5;
 }
 
-.home-btn{
-  padding:9px 16px;
-  border-radius:9px;
-  background:#fff;
-  color:#111 !important;
-  font-weight:700;
+.menu-btn{
+display:none;
+background:none;
+border:0;
+color:#fff;
+font-size:30px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px 45px;
-  text-align:center;
+max-width:1250px;
+margin:auto;
+padding:95px 20px 55px;
+text-align:center;
 }
 
 .badge{
-  display:inline-block;
-  padding:7px 14px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:30px;
-  background:rgba(255,255,255,.05);
-  color:#b9c4d0;
-  font-size:13px;
-  margin-bottom:18px;
+display:inline-block;
+padding:10px 18px;
+border:1px solid rgba(255,255,255,.14);
+border-radius:40px;
+color:#63dff5;
+letter-spacing:2px;
+font-size:13px;
+font-weight:700;
+margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:clamp(36px,6vw,70px);
-  line-height:1.05;
-  margin-bottom:20px;
+font-size:clamp(42px,7vw,78px);
+line-height:1.05;
+margin-bottom:22px;
 }
 
-.hero h1 span{
-  color:#8fb7ff;
+.gradient{
+background:linear-gradient(90deg,#8b5cf6,#22d3ee);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .hero p{
-  max-width:760px;
-  margin:auto;
-  color:#aeb8c5;
-  font-size:17px;
+max-width:800px;
+margin:auto;
+font-size:20px;
+color:#9da8bf;
 }
 
+/* STATS */
+
 .stats{
-  max-width:900px;
-  margin:35px auto 0;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+max-width:1250px;
+margin:10px auto 60px;
+padding:0 20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
 }
 
 .stat{
-  padding:20px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;
-  background:rgba(255,255,255,.035);
+padding:30px;
+text-align:center;
+background:#101622;
+border:1px solid rgba(255,255,255,.1);
+border-radius:24px;
 }
 
 .stat strong{
-  display:block;
-  font-size:27px;
+display:block;
+font-size:42px;
+margin-bottom:8px;
 }
 
 .stat span{
-  color:#8d98a7;
-  font-size:13px;
+color:#9da8bf;
 }
 
-/* ================= COURSE AREA ================= */
+/* DIRECTORY */
 
 .container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
+max-width:1250px;
+margin:auto;
+padding:0 20px 80px;
+}
+
+.section-title{
+margin-bottom:28px;
+}
+
+.section-title span{
+color:#63dff5;
+letter-spacing:4px;
+font-size:13px;
+font-weight:800;
+}
+
+.section-title h2{
+font-size:42px;
+margin-top:8px;
 }
 
 .toolbar{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:25px;
+display:grid;
+grid-template-columns:1fr 240px;
+gap:15px;
+margin-bottom:35px;
 }
 
-.search{
-  flex:1;
-  min-width:230px;
-  padding:14px 17px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.1);
-  background:#121821;
-  color:#fff;
-  outline:none;
-}
-
-.search:focus{
-  border-color:#779fff;
-}
-
+.search,
 .filter{
-  padding:14px 17px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.1);
-  background:#121821;
-  color:#fff;
-  outline:none;
+width:100%;
+padding:17px 20px;
+background:#101622;
+color:#fff;
+border:1px solid rgba(255,255,255,.12);
+border-radius:16px;
+outline:none;
 }
 
-/* ================= COURSE CARDS ================= */
+.search:focus,
+.filter:focus{
+border-color:#4fdff4;
+}
+
+/* COURSE GRID */
 
 .course-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px;
 }
 
 .course-card{
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;
-  overflow:hidden;
-  background:#111720;
-  transition:.25s;
+background:linear-gradient(145deg,#111827,#0c111d);
+border:1px solid rgba(255,255,255,.1);
+border-radius:24px;
+padding:28px;
+transition:.25s;
 }
 
 .course-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(255,255,255,.2);
+transform:translateY(-5px);
+border-color:rgba(99,223,245,.35);
 }
 
-.course-cover{
-  height:145px;
-  padding:20px;
-  display:flex;
-  align-items:flex-end;
-  background:linear-gradient(135deg,#202d43,#101722);
-}
-
-.course-number{
-  font-size:13px;
-  color:#b7c4d6;
-}
-
-.course-card-body{
-  padding:20px;
+.course-icon{
+font-size:42px;
+margin-bottom:18px;
 }
 
 .course-card h3{
-  font-size:20px;
-  margin-bottom:8px;
+font-size:24px;
+margin-bottom:10px;
 }
 
 .course-card p{
-  color:#8f9aaa;
-  font-size:14px;
-  min-height:68px;
+color:#9da8bf;
+margin-bottom:20px;
+min-height:52px;
 }
 
-.category{
-  display:inline-block;
-  margin-top:14px;
-  padding:5px 10px;
-  border-radius:20px;
-  background:rgba(143,183,255,.1);
-  color:#9fbeff;
-  font-size:12px;
+.course-meta{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:22px;
 }
 
-.course-info{
-  display:flex;
-  gap:15px;
-  margin:17px 0;
-  color:#8f9aaa;
-  font-size:12px;
+.course-meta span{
+padding:7px 11px;
+border-radius:20px;
+background:rgba(255,255,255,.06);
+color:#b7c0d3;
+font-size:12px;
 }
 
-.open-course{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:10px;
-  background:#fff;
-  color:#111;
-  font-weight:700;
+.view-btn{
+display:inline-block;
+padding:12px 18px;
+border-radius:12px;
+background:linear-gradient(90deg,#7c3aed,#06b6d4);
+color:#fff;
+font-weight:700;
+border:0;
 }
 
-/* ================= CURRICULUM ================= */
+/* CURRICULUM */
 
 .curriculum{
-  display:none;
-  margin-top:40px;
+display:none;
 }
 
 .curriculum.active{
-  display:block;
+display:block;
 }
 
-.course-head{
-  padding:30px;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;
-  background:#111720;
-  margin-bottom:20px;
+.course-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:20px;
+margin-bottom:25px;
 }
 
 .back-btn{
-  border:0;
-  background:none;
-  color:#a9c0ff;
-  margin-bottom:18px;
+padding:11px 16px;
+border-radius:12px;
+background:#111827;
+color:#dce3f5;
+border:1px solid rgba(255,255,255,.1);
 }
 
-.course-head h2{
-  font-size:clamp(28px,5vw,45px);
-  margin-bottom:10px;
+.course-top h2{
+font-size:36px;
+margin-bottom:8px;
 }
 
-.course-head p{
-  color:#9aa5b3;
-  max-width:800px;
+.course-top p{
+color:#9da8bf;
 }
 
-.progress-area{
-  margin-top:25px;
+/* PROGRESS */
+
+.progress-box{
+margin:25px 0;
+padding:22px;
+background:#101622;
+border:1px solid rgba(255,255,255,.1);
+border-radius:18px;
 }
 
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:8px;
-  color:#aab4c1;
-  font-size:13px;
+.progress-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+color:#cbd2e4;
 }
 
 .progress-bar{
-  height:9px;
-  background:#202833;
-  border-radius:20px;
-  overflow:hidden;
+height:10px;
+background:#202938;
+border-radius:20px;
+overflow:hidden;
 }
 
 .progress-fill{
-  height:100%;
-  width:0%;
-  background:#8fb7ff;
-  transition:.3s;
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#7c3aed,#06b6d4);
+transition:.3s;
 }
 
-/* ================= MODULE ================= */
+/* MODULE */
 
 .module{
-  margin-bottom:14px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:15px;
-  overflow:hidden;
-  background:#10161e;
+margin-bottom:16px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:18px;
+overflow:hidden;
+background:#0e1420;
+}
+
+.module-header{
+width:100%;
+padding:20px;
+background:#111827;
+border:0;
+color:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+text-align:left;
 }
 
 .module-title{
-  width:100%;
-  padding:20px;
-  border:0;
-  background:#151c26;
-  color:#fff;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  font-weight:700;
+font-size:18px;
+font-weight:800;
 }
 
-.module-title small{
-  color:#8995a5;
-  font-weight:400;
+.module-count{
+color:#8e9ab0;
+font-size:13px;
 }
 
 .class-list{
-  display:none;
-  padding:8px;
+display:none;
 }
 
-.class-list.open{
-  display:block;
+.module.open .class-list{
+display:block;
 }
 
 .class-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:15px;
-  border-radius:10px;
-  transition:.2s;
-}
-
-.class-item:hover{
-  background:rgba(255,255,255,.04);
-}
-
-.class-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
+display:flex;
+align-items:center;
+gap:15px;
+padding:16px 20px;
+border-top:1px solid rgba(255,255,255,.06);
 }
 
 .class-number{
-  min-width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border-radius:9px;
-  background:#1d2734;
-  color:#a8c2ff;
-  font-size:12px;
-  font-weight:700;
+width:40px;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#182131;
+color:#63dff5;
+font-weight:800;
+flex-shrink:0;
 }
 
-.class-name{
-  font-size:14px;
+.class-info{
+flex:1;
 }
 
-.class-duration{
-  display:block;
-  color:#778394;
-  font-size:11px;
-  margin-top:2px;
+.class-info strong{
+display:block;
+margin-bottom:3px;
 }
 
-.lesson-btn{
-  border:1px solid rgba(255,255,255,.12);
-  background:#18212c;
-  color:#fff;
-  padding:8px 13px;
-  border-radius:8px;
-  font-size:12px;
+.class-info small{
+color:#8995aa;
 }
 
-.lesson-btn:hover{
-  background:#fff;
-  color:#111;
+.class-open{
+padding:9px 14px;
+border-radius:10px;
+border:1px solid rgba(99,223,245,.3);
+background:transparent;
+color:#63dff5;
+font-weight:700;
 }
 
-.complete-btn{
-  border:0;
-  background:#1c2b26;
-  color:#78d4a0;
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:11px;
+/* LESSON */
+
+.lesson-panel{
+display:none;
+margin-top:30px;
+padding:28px;
+background:#101622;
+border:1px solid rgba(255,255,255,.1);
+border-radius:24px;
 }
 
-/* ================= LESSON MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.8);
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(850px,100%);
-  max-height:90vh;
-  overflow:auto;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;
-  background:#111720;
-  padding:25px;
-  position:relative;
-}
-
-.close-modal{
-  position:absolute;
-  right:18px;
-  top:15px;
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:50%;
-  background:#252e39;
-  color:#fff;
+.lesson-panel.active{
+display:block;
 }
 
 .lesson-label{
-  color:#9fbaff;
-  font-size:12px;
-  margin-bottom:8px;
+color:#63dff5;
+font-size:13px;
+font-weight:800;
+letter-spacing:2px;
+margin-bottom:8px;
 }
 
-.modal-box h2{
-  margin-bottom:15px;
+.lesson-panel h3{
+font-size:30px;
+margin-bottom:8px;
 }
 
-.video-placeholder{
-  aspect-ratio:16/9;
-  display:grid;
-  place-items:center;
-  border-radius:14px;
-  background:#080b0f;
-  border:1px solid rgba(255,255,255,.08);
-  margin:20px 0;
-  color:#6f7b8b;
-  text-align:center;
-  padding:20px;
+.lesson-desc{
+color:#9da8bf;
+margin-bottom:25px;
+}
+
+.video-box{
+aspect-ratio:16/9;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+border-radius:18px;
+background:linear-gradient(135deg,#17153a,#07394a);
+border:1px solid rgba(255,255,255,.08);
+margin-bottom:22px;
+}
+
+.play{
+width:72px;
+height:72px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#63dff5;
+color:#061019;
+font-size:30px;
 }
 
 .resources{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:18px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:25px;
 }
 
 .resource{
-  padding:14px;
-  border-radius:10px;
-  background:#18212c;
-  text-align:center;
-  color:#aeb9c7;
-  font-size:13px;
+padding:18px;
+background:#151d2b;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.08);
 }
 
-.lesson-note{
-  margin-top:20px;
-  padding:18px;
-  border-radius:12px;
-  background:#151c25;
-  color:#99a5b4;
-  font-size:14px;
+.resource strong{
+display:block;
+margin-bottom:5px;
 }
 
-/* ================= FOOTER ================= */
-
-.footer{
-  text-align:center;
-  padding:60px 20px;
-  color:#667282;
-  font-size:13px;
+.resource span{
+color:#8f9bb0;
+font-size:13px;
 }
 
-/* ================= MOBILE ================= */
-
-@media(max-width:850px){
-  .course-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .nav-links{
-    gap:10px;
-  }
-
-  .nav-links a:not(.home-btn){
-    display:none;
-  }
+.lesson-actions{
+display:flex;
+justify-content:space-between;
+gap:10px;
 }
 
-@media(max-width:600px){
-  .nav{
-    padding:10px 14px;
-  }
+.lesson-actions button{
+padding:12px 18px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.1);
+background:#151d2b;
+color:#fff;
+}
 
-  .brand{
-    font-size:15px;
-  }
+.lesson-actions .complete{
+background:linear-gradient(90deg,#7c3aed,#06b6d4);
+border:0;
+font-weight:700;
+}
 
-  .brand img{
-    width:36px;
-    height:36px;
-  }
+/* EMPTY */
 
-  .hero{
-    padding:55px 15px 30px;
-  }
+.empty{
+padding:50px;
+text-align:center;
+color:#8995aa;
+display:none;
+}
 
-  .hero p{
-    font-size:14px;
-  }
+/* MOBILE */
 
-  .stats{
-    grid-template-columns:1fr;
-  }
+@media(max-width:800px){
 
-  .course-grid{
-    grid-template-columns:1fr;
-  }
+.nav{
+min-height:70px;
+}
 
-  .container{
-    padding:15px;
-  }
+.nav-links{
+display:none;
+position:absolute;
+top:70px;
+left:0;
+right:0;
+padding:20px;
+background:#080d17;
+flex-direction:column;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
 
-  .course-head{
-    padding:20px;
-  }
+.nav-links.show{
+display:flex;
+}
 
-  .class-item{
-    align-items:flex-start;
-  }
+.menu-btn{
+display:block;
+}
 
-  .class-left{
-    min-width:0;
-  }
+.hero{
+padding-top:70px;
+}
 
-  .class-name{
-    font-size:13px;
-  }
+.hero p{
+font-size:17px;
+}
 
-  .lesson-btn{
-    flex-shrink:0;
-  }
+.stats{
+grid-template-columns:1fr;
+}
 
-  .resources{
-    grid-template-columns:1fr;
-  }
+.toolbar{
+grid-template-columns:1fr;
+}
+
+.course-grid{
+grid-template-columns:1fr;
+}
+
+.course-top{
+flex-direction:column;
+}
+
+.resources{
+grid-template-columns:1fr;
+}
+
+.class-item{
+align-items:flex-start;
+}
+
+.class-open{
+padding:8px 10px;
+font-size:12px;
+}
+
+.course-top h2{
+font-size:28px;
+}
+
+}
+
+@media(max-width:500px){
+
+.hero h1{
+font-size:42px;
+}
+
+.section-title h2{
+font-size:32px;
+}
+
+.course-card{
+padding:22px;
+}
+
+.class-item{
+flex-wrap:wrap;
+}
+
+.class-info{
+min-width:calc(100% - 55px);
+}
+
+.class-open{
+margin-left:55px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
-  <nav class="nav">
 
-    <a href="index.html" class="brand">
-      <img src="logo.svg" alt="Maya Shadow Academy">
-      <span>Maya Shadow Academy</span>
-    </a>
+<nav class="nav">
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#courses">Courses</a>
-      <a href="#curriculum">My Learning</a>
-      <a href="index.html" class="home-btn">Academy Home</a>
-    </div>
+<a href="index.html" class="brand">
+<img src="logo.svg" alt="Maya Shadow Academy">
+<span>MAYA SHADOW<br>ACADEMY</span>
+</a>
 
-  </nav>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="courses.html">Courses</a>
+<a href="index.html#recorded">Recorded Classes</a>
+<a href="index.html#resources">Resources</a>
+<a href="index.html#services">Services</a>
+</div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</nav>
+
 </header>
 
 
-<!-- ================= HERO ================= -->
-
 <section class="hero">
 
-  <div class="badge">🎓 PROFESSIONAL ONLINE ACADEMY</div>
+<div class="badge">🎓 PROFESSIONAL ONLINE ACADEMY</div>
 
-  <h1>
-    Learn. Create. <span>Master.</span>
-  </h1>
+<h1>
+Learn. Create.<br>
+<span class="gradient">Master.</span>
+</h1>
 
-  <p>
-    Learn animation, graphic design, audio, video editing,
-    AI content creation, storytelling and YouTube production
-    through structured professional courses.
-  </p>
-
-  <div class="stats">
-
-    <div class="stat">
-      <strong id="courseCount">17</strong>
-      <span>Professional Courses</span>
-    </div>
-
-    <div class="stat">
-      <strong id="moduleCount">0</strong>
-      <span>Total Modules</span>
-    </div>
-
-    <div class="stat">
-      <strong id="classCount">0</strong>
-      <span>Total Classes</span>
-    </div>
-
-  </div>
+<p>
+Learn animation, graphic design, audio, video editing,
+AI content creation, storytelling and YouTube production
+through structured professional courses.
+</p>
 
 </section>
 
 
-<!-- ================= COURSE DIRECTORY ================= -->
+<section class="stats">
 
-<section id="courses" class="container">
+<div class="stat">
+<strong id="courseCount">0</strong>
+<span>Professional Courses</span>
+</div>
 
-  <div class="toolbar">
+<div class="stat">
+<strong id="moduleCount">0</strong>
+<span>Total Modules</span>
+</div>
 
-    <input
-      type="search"
-      id="search"
-      class="search"
-      placeholder="🔎 Search courses..."
-    >
-
-    <select id="categoryFilter" class="filter">
-      <option value="all">All Categories</option>
-      <option value="Animation">Animation</option>
-      <option value="Graphic Design">Graphic Design</option>
-      <option value="Audio & Voice">Audio & Voice</option>
-      <option value="Video Editing">Video Editing</option>
-      <option value="AI & Content Creation">AI & Content Creation</option>
-      <option value="YouTube & Story">YouTube & Story</option>
-    </select>
-
-  </div>
-
-  <div id="courseGrid" class="course-grid"></div>
+<div class="stat">
+<strong id="classCount">0</strong>
+<span>Total Classes</span>
+</div>
 
 </section>
 
 
-<!-- ================= CURRICULUM ================= -->
+<section class="container" id="directory">
 
-<section id="curriculum" class="container curriculum">
+<div class="section-title">
 
-  <div class="course-head">
+<span>LEARN WITH US</span>
 
-    <button class="back-btn" onclick="closeCourse()">
-      ← Back to All Courses
-    </button>
-
-    <h2 id="selectedCourseTitle"></h2>
-
-    <p id="selectedCourseDescription"></p>
-
-    <div class="progress-area">
-
-      <div class="progress-top">
-        <span>Course Progress</span>
-        <span id="progressText">0%</span>
-      </div>
-
-      <div class="progress-bar">
-        <div id="progressFill" class="progress-fill"></div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div id="moduleContainer"></div>
-
-</section>
-
-
-<!-- ================= LESSON MODAL ================= -->
-
-<div id="lessonModal" class="modal">
-
-  <div class="modal-box">
-
-    <button class="close-modal" onclick="closeLesson()">✕</button>
-
-    <div class="lesson-label" id="lessonModule"></div>
-
-    <h2 id="lessonTitle"></h2>
-
-    <div class="video-placeholder">
-      🎥<br>
-      Course Video Will Appear Here<br>
-      <small>Add your private/unlisted video URL in the course data later.</small>
-    </div>
-
-    <div class="resources">
-
-      <div class="resource">
-        📄<br>
-        Notes / PDF
-      </div>
-
-      <div class="resource">
-        📦<br>
-        Project Files
-      </div>
-
-      <div class="resource">
-        📝<br>
-        Assignment
-      </div>
-
-    </div>
-
-    <div class="lesson-note">
-      <strong>Lesson Information</strong><br><br>
-      This lesson is part of the professional Maya Shadow Academy
-      curriculum. Video, notes, project files and assignments can
-      be connected here later.
-    </div>
-
-  </div>
+<h2>Course Directory</h2>
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<div class="toolbar">
 
-<footer class="footer">
-  © 2026 Maya Shadow Academy · Learn Today · Create Tomorrow
-</footer>
+<input
+id="searchInput"
+class="search"
+type="search"
+placeholder="🔎 Search courses..."
+>
 
+<select id="categoryFilter" class="filter">
+<option value="all">All Categories</option>
+<option value="Animation">Animation</option>
+<option value="Graphic Design">Graphic Design</option>
+<option value="Audio & Voice">Audio & Voice</option>
+<option value="Video Editing">Video Editing</option>
+<option value="AI & Content Creation">AI & Content Creation</option>
+<option value="YouTube & Story">YouTube & Story</option>
+</select>
+
+</div>
+
+
+<div id="courseGrid" class="course-grid"></div>
+
+<div id="empty" class="empty">
+No courses found.
+</div>
+
+</section>
+
+
+<section class="container curriculum" id="curriculum">
+
+<div class="course-top">
+
+<div>
+
+<button class="back-btn" onclick="closeCourse()">
+← Back to All Courses
+</button>
+
+<h2 id="selectedCourseTitle"></h2>
+
+<p id="selectedCourseDescription"></p>
+
+</div>
+
+</div>
+
+
+<div class="progress-box">
+
+<div class="progress-head">
+<span>Course Progress</span>
+<strong id="progressText">0%</strong>
+</div>
+
+<div class="progress-bar">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+</div>
+
+
+<div id="moduleContainer"></div>
+
+
+<div id="lessonPanel" class="lesson-panel">
+
+<div class="lesson-label" id="lessonModule"></div>
+
+<h3 id="lessonTitle"></h3>
+
+<p class="lesson-desc" id="lessonDescription">
+This lesson is ready for your recorded class content.
+</p>
+
+
+<div class="video-box">
+
+<div>
+<div class="play">▶</div>
+<p style="margin-top:12px;color:#9da8bf;">
+Course Video
+</p>
+</div>
+
+</div>
+
+
+<div class="resources">
+
+<div class="resource">
+<strong>📄 Notes / PDF</strong>
+<span>Lesson notes will appear here.</span>
+</div>
+
+<div class="resource">
+<strong>📦 Project Files</strong>
+<span>Downloadable project resources.</span>
+</div>
+
+<div class="resource">
+<strong>📝 Assignment</strong>
+<span>Practice assignment for this lesson.</span>
+</div>
+
+</div>
+
+
+<div class="lesson-actions">
+
+<button onclick="previousLesson()">
+← Previous
+</button>
+
+<button class="complete" onclick="completeLesson()">
+✓ Mark Complete
+</button>
+
+<button onclick="nextLesson()">
+Next →
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script src="course-data.js"></script>
 
 <script>
 
-/* =========================================================
-   MAYA SHADOW ACADEMY
-   MASTER COURSE DATABASE
+let currentCourse=null;
+let currentLessons=[];
+let currentIndex=0;
 
-   ভবিষ্যতে নতুন Course / Module / Class যোগ করতে
-   মূল website design পরিবর্তন করতে হবে না।
-   শুধু নিচের data-তে নতুন information যোগ করবেন।
-========================================================= */
+const courseGrid=document.getElementById("courseGrid");
+const moduleContainer=document.getElementById("moduleContainer");
 
-const courses = [
+function toggleMenu(){
 
-/* ================= 01 ================= */
+document.getElementById("navLinks")
+.classList.toggle("show");
 
-{
- id:"animation-master",
- title:"Complete 2.5D Cartoon Story Animation Master Course",
- category:"Animation",
- description:"Complete workflow for creating professional 2.5D cartoon stories from idea to final animated video.",
- modules:[
-  {
-   title:"Module 01 — Animation Foundation",
-   classes:[
-    ["01","Introduction to 2.5D Animation","12 min"],
-    ["02","2D vs 2.5D vs 3D Animation","18 min"],
-    ["03","Understanding Cartoon Story Production","20 min"],
-    ["04","Complete Animation Workflow","22 min"]
-   ]
-  },
-  {
-   title:"Module 02 — Story & Pre-Production",
-   classes:[
-    ["05","Story Idea Development","20 min"],
-    ["06","Character & Story Planning","25 min"],
-    ["07","Storyboard Creation","30 min"],
-    ["08","Scene Breakdown","22 min"]
-   ]
-  },
-  {
-   title:"Module 03 — Background & Environment",
-   classes:[
-    ["09","Rural Village Background","25 min"],
-    ["10","Interior Background Design","28 min"],
-    ["11","Outdoor Environment","25 min"],
-    ["12","Lighting & Atmosphere","30 min"]
-   ]
-  },
-  {
-   title:"Module 04 — Character Production",
-   classes:[
-    ["13","Character Design Basics","25 min"],
-    ["14","Male Character Creation","35 min"],
-    ["15","Female Character Creation","35 min"],
-    ["16","Child & Elderly Characters","30 min"]
-   ]
-  },
-  {
-   title:"Module 05 — Animation Production",
-   classes:[
-    ["17","Character Movement","30 min"],
-    ["18","Walking Animation","35 min"],
-    ["19","Facial Animation","30 min"],
-    ["20","Lip Sync","35 min"]
-   ]
-  },
-  {
-   title:"Module 06 — Complete Story Project",
-   classes:[
-    ["21","Scene Assembly","35 min"],
-    ["22","Camera & Cinematic Shots","30 min"],
-    ["23","Sound & Voice Integration","30 min"],
-    ["24","Final Story Production","45 min"]
-   ]
-  }
- ]
-},
+}
 
-/* ================= 02 ================= */
 
-{
- id:"cartoon-animator",
- title:"Cartoon Animator 5 — Complete Course",
- category:"Animation",
- description:"From software installation to professional character rigging, facial animation, lip sync and complete story production.",
- modules:[
-  {
-   title:"Module 01 — Software Download & Installation",
-   classes:[
-    ["01","Course Introduction","10 min"],
-    ["02","Software Download","15 min"],
-    ["03","Software Installation","15 min"],
-    ["04","Basic Setup & Preferences","18 min"]
-   ]
-  },
-  {
-   title:"Module 02 — Complete Software Overview",
-   classes:[
-    ["05","Complete Interface Overview","20 min"],
-    ["06","Toolbar & Main Tools","25 min"],
-    ["07","Stage & Timeline","22 min"],
-    ["08","Content Manager","20 min"],
-    ["09","Character Controls","25 min"]
-   ]
-  },
-  {
-   title:"Module 03 — Character Basics",
-   classes:[
-    ["10","Character Structure","25 min"],
-    ["11","Character Marking","30 min"],
-    ["12","Body Parts & Layers","28 min"],
-    ["13","Character Setup","30 min"]
-   ]
-  },
-  {
-   title:"Module 04 — Male Character Making",
-   classes:[
-    ["14","Male Character Design","30 min"],
-    ["15","Body Construction","35 min"],
-    ["16","Clothing Setup","30 min"],
-    ["17","Male Character Rigging","40 min"]
-   ]
-  },
-  {
-   title:"Module 05 — Female Character Making",
-   classes:[
-    ["18","Female Character Design","30 min"],
-    ["19","Body & Clothing Setup","35 min"],
-    ["20","Hair & Accessories","25 min"],
-    ["21","Female Character Rigging","40 min"]
-   ]
-  },
-  {
-   title:"Module 06 — Character Rigging & Advanced Setup",
-   classes:[
-    ["22","Advanced Bone Setup","40 min"],
-    ["23","Spring & Flexibility","30 min"],
-    ["24","Advanced Character Controls","35 min"],
-    ["25","Character Testing","25 min"]
-   ]
-  },
-  {
-   title:"Module 07 — Facial Animation & Lip Sync",
-   classes:[
-    ["26","Face Setup","25 min"],
-    ["27","Eye Animation","25 min"],
-    ["28","Mouth Shapes","30 min"],
-    ["29","Automatic Lip Sync","25 min"],
-    ["30","Manual Lip Sync","30 min"]
-   ]
-  },
-  {
-   title:"Module 08 — Walking & Body Animation",
-   classes:[
-    ["31","Basic Body Movement","25 min"],
-    ["32","Walking Animation","35 min"],
-    ["33","Running & Action","30 min"],
-    ["34","Hand & Body Gestures","30 min"]
-   ]
-  },
-  {
-   title:"Module 09 — Scene & Camera Building",
-   classes:[
-    ["35","Scene Setup","25 min"],
-    ["36","Camera System","30 min"],
-    ["37","Camera Movement","30 min"],
-    ["38","Cinematic Composition","35 min"]
-   ]
-  },
-  {
-   title:"Module 10 — Complete Story Animation Project",
-   classes:[
-    ["39","Story Project Planning","30 min"],
-    ["40","Scene Production","40 min"],
-    ["41","Character Animation","45 min"],
-    ["42","Voice & Sound","30 min"],
-    ["43","Final Rendering","30 min"]
-   ]
-  }
- ]
-},
+function totalModules(){
 
-/* ================= 03 ================= */
+return courses.reduce(
+(total,c)=>total+c.modules.length,0
+);
 
-{
- id:"photoshop",
- title:"Photoshop — Complete Course",
- category:"Graphic Design",
- description:"Learn Photoshop from beginner fundamentals to professional image editing, compositing and design.",
- modules:[
-  {
-   title:"Module 01 — Photoshop Foundation",
-   classes:[
-    ["01","Introduction to Photoshop","15 min"],
-    ["02","Interface & Workspace","20 min"],
-    ["03","Tools Overview","25 min"],
-    ["04","Document & Canvas Setup","20 min"]
-   ]
-  },
-  {
-   title:"Module 02 — Selection & Layer Mastery",
-   classes:[
-    ["05","Selection Tools","25 min"],
-    ["06","Layers","25 min"],
-    ["07","Layer Masks","30 min"],
-    ["08","Smart Objects","25 min"]
-   ]
-  },
-  {
-   title:"Module 03 — Professional Image Editing",
-   classes:[
-    ["09","Color Correction","30 min"],
-    ["10","Retouching","35 min"],
-    ["11","Background Removal","25 min"],
-    ["12","Photo Manipulation","40 min"]
-   ]
-  }
- ]
-},
+}
 
-/* ================= 04 ================= */
 
-{
- id:"illustrator",
- title:"Adobe Illustrator — Complete Course",
- category:"Graphic Design",
- description:"Master vector graphics, logo design, illustration and professional graphic design.",
- modules:[
-  {
-   title:"Module 01 — Illustrator Foundation",
-   classes:[
-    ["01","Introduction","15 min"],
-    ["02","Interface & Workspace","20 min"],
-    ["03","Selection & Shape Tools","25 min"],
-    ["04","Pen Tool","30 min"]
-   ]
-  },
-  {
-   title:"Module 02 — Vector Design",
-   classes:[
-    ["05","Shapes & Pathfinder","25 min"],
-    ["06","Colors & Gradients","25 min"],
-    ["07","Typography","30 min"],
-    ["08","Vector Illustration","35 min"]
-   ]
-  },
-  {
-   title:"Module 03 — Professional Projects",
-   classes:[
-    ["09","Logo Design","40 min"],
-    ["10","Character Vector Design","40 min"],
-    ["11","Poster Design","35 min"],
-    ["12","Final Project","45 min"]
-   ]
-  }
- ]
-},
+function totalClasses(){
 
-/* ================= 05 ================= */
+return courses.reduce(
+(total,c)=>
+total+
+c.modules.reduce(
+(t,m)=>t+m.classes.length,0
+),0
+);
 
-{
- id:"audition",
- title:"Adobe Audition — Complete Course",
- category:"Audio & Voice",
- description:"Professional audio recording, cleaning, editing, mixing and mastering.",
- modules:[
-  {
-   title:"Module 01 — Recording Foundation",
-   classes:[
-    ["01","Audio Basics","15 min"],
-    ["02","Microphone Setup","20 min"],
-    ["03","Recording Settings","20 min"],
-    ["04","Professional Recording Workflow","25 min"]
-   ]
-  },
-  {
-   title:"Module 02 — Voice Editing",
-   classes:[
-    ["05",      
+}
+
+
+function updateStats(){
+
+document.getElementById("courseCount").textContent=
+courses.length;
+
+document.getElementById("moduleCount").textContent=
+totalModules();
+
+document.getElementById("classCount").textContent=
+totalClasses();
+
+}
+
+
+function renderCourses(){
+
+const search=
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const category=
+document.getElementById("categoryFilter")
+.value;
+
+courseGrid.innerHTML="";
+
+let visible=0;
+
+courses.forEach((course,index)=>{
+
+const matchesSearch=
+course.title.toLowerCase().includes(search) ||
+course.description.toLowerCase().includes(search);
+
+const matchesCategory=
+category==="all" ||
+course.category===category;
+
+if(!matchesSearch || !matchesCategory) return;
+
+visible++;
+
+const classes=course.modules.reduce(
+(t,m)=>t+m.classes.length,0
+);
+
+const card=document.createElement("article");
+
+card.className="course-card";
+
+card.innerHTML=`
+
+<div class="course-icon">${course.icon}</div>
+
+<h3>${course.title}</h3>
+
+<p>${course.description}</p>
+
+<div class="course-meta">
+
+<span>${course.category}</span>
+
+<span>${course.modules.length} Modules</span>
+
+<span>${classes} Classes</span>
+
+</div>
+
+<button class="view-btn"
+onclick="openCourse(${index})">
+View Course →
+</button>
+
+`;
+
+courseGrid.appendChild(card);
+
+});
+
+document.getElementById("empty").style.display=
+visible ? "none" : "block";
+
+}
+
+
+function openCourse(index){
+
+currentCourse=courses[index];
+
+currentLessons=[];
+
+currentIndex=0;
+
+courses[index].modules.forEach(module=>{
+
+module.classes.forEach(cls=>{
+
+currentLessons.push({
+module:module.title,
+id:cls.id,
+title:cls.title,
+duration:cls.duration
+});
+
+});
+
+});
+
+document.getElementById("directory")
+.style.display="none";
+
+document.getElementById("curriculum")
+.classList.add("active");
+
+document.getElementById("selectedCourseTitle")
+.textContent=currentCourse.title;
+
+document.getElementById("selectedCourseDescription")
+.textContent=currentCourse.description;
+
+renderModules();
+
+updateProgress();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function closeCourse(){
+
+document.getElementById("curriculum")
+.classList.remove("active");
+
+document.getElementById("directory")
+.style.display="block";
+
+document.getElementById("lessonPanel")
+.classList.remove("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function renderModules(){
+
+moduleContainer.innerHTML="";
+
+currentCourse.modules.forEach((module,mIndex)=>{
+
+const box=document.createElement("div");
+
+box.className="module";
+
+const header=document.createElement("button");
+
+header.className="module-header";
+
+header.innerHTML=`
+
+<span class="module-title">
+${module.title}
+</span>
+
+<span class="module-count">
+${module.classes.length} Classes ▾
+</span>
+
+`;
+
+header.onclick=()=>{
+box.classList.toggle("open");
+};
+
+box.appendChild(header);
+
+const list=document.createElement("div");
+
+list.className="class-list";
+
+module.classes.forEach(cls=>{
+
+const item=document.createElement("div");
+
+item.className="class-item";
+
+item.innerHTML=`
+
+<div class="class-number">
+${cls.id}
+</div>
+
+<div class="class-info">
+
+<strong>${cls.title}</strong>
+
+<small>⏱ ${cls.duration}</small>
+
+</div>
+
+<button class="class-open">
+Open
+</button>
+
+`;
+
+item.querySelector(".class-open")
+.onclick=()=>{
+
+const globalIndex=
+currentLessons.findIndex(
+(x)=>x.id===cls.id
+);
+
+openLesson(globalIndex);
+
+};
+
+list.appendChild(item);
+
+});
+
+box.appendChild(list);
+
+moduleContainer.appendChild(box);
+
+});
+
+}
+
+
+function openLesson(index){
+
+if(index<0 || index>=currentLessons.length)
+return;
+
+currentIndex=index;
+
+const lesson=currentLessons[index];
+
+document.getElementById("lessonModule")
+.textContent=lesson.module;
+
+document.getElementById("lessonTitle")
+.textContent=
+"Class "+lesson.id+" — "+lesson.title;
+
+document.getElementById("lessonPanel")
+.classList.add("active");
+
+updateProgress();
+
+setTimeout(()=>{
+
+document.getElementById("lessonPanel")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+},100);
+
+}
+
+
+function completeLesson(){
+
+const lesson=currentLessons[currentIndex];
+
+localStorage.setItem(
+"maya_completed_"+currentCourse.id+"_"+lesson.id,
+"yes"
+);
+
+updateProgress();
+
+alert("Class marked as complete ✓");
+
+}
+
+
+function isCompleted(lesson){
+
+return localStorage.getItem(
+"maya_completed_"+
+currentCourse.id+
+"_"+lesson.id
+)==="yes";
+
+}
+
+
+function updateProgress(){
+
+if(!currentCourse || !currentLessons.length)
+return;
+
+let completed=0;
+
+currentLessons.forEach(lesson=>{
+
+if(isCompleted(lesson))
+completed++;
+
+});
+
+const percent=
+Math.round(
+(completed/currentLessons.length)*100
+);
+
+document.getElementById("progressText")
+.textContent=percent+"%";
+
+document.getElementById("progressFill")
+.style.width=percent+"%";
+
+}
+
+
+function previousLesson(){
+
+if(currentIndex>0){
+
+openLesson(currentIndex-1);
+
+}
+
+}
+
+
+function nextLesson(){
+
+if(currentIndex<
+currentLessons.length-1){
+
+openLesson(currentIndex+1);
+
+}
+
+}
+
+
+document.getElementById("searchInput")
+.addEventListener(
+"input",
+renderCourses
+);
+
+document.getElementById("categoryFilter")
+.addEventListener(
+"change",
+renderCourses
+);
+
+
+updateStats();
+
+renderCourses();
+
+</script>
+
+</body>
+</html>
