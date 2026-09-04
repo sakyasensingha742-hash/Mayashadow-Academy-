@@ -1,620 +1,1080 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Maya Shadow Academy | Courses</title>
+<title>Maya Shadow Academy | Courses</title>
 
-  <link rel="icon" href="logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
 
-  <style>
-    .course-page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 100px 20px 80px;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .course-hero {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .course-hero h1 {
-      font-size: clamp(38px, 7vw, 72px);
-      margin: 15px 0;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0b0f14;
+  color:#fff;
+  line-height:1.6;
+}
 
-    .course-hero p {
-      max-width: 750px;
-      margin: auto;
-      line-height: 1.7;
-      opacity: .8;
-    }
+button,
+input,
+select{
+  font:inherit;
+}
 
-    .course-box {
-      margin: 35px 0;
-      padding: 28px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 24px;
-      background: rgba(255,255,255,.035);
-    }
+button{
+  cursor:pointer;
+}
 
-    .course-box h2 {
-      margin-top: 0;
-      font-size: 28px;
-    }
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
-    .course-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0;
-    }
+/* ================= HEADER ================= */
 
-    .course-meta span {
-      padding: 8px 14px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.08);
-      font-size: 14px;
-    }
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(10,14,20,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
 
-    .module {
-      margin-top: 15px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 15px;
-      overflow: hidden;
-    }
+.nav{
+  max-width:1200px;
+  margin:auto;
+  min-height:72px;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
 
-    .module summary {
-      cursor: pointer;
-      padding: 18px;
-      font-weight: 700;
-      list-style: none;
-      background: rgba(255,255,255,.045);
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+  font-size:19px;
+}
 
-    .module summary::-webkit-details-marker {
-      display: none;
-    }
+.brand img{
+  width:42px;
+  height:42px;
+}
 
-    .module summary::before {
-      content: "＋";
-      margin-right: 10px;
-    }
+.nav-links{
+  display:flex;
+  gap:24px;
+  align-items:center;
+}
 
-    .module[open] summary::before {
-      content: "−";
-    }
+.nav-links a{
+  color:#dce3eb;
+  font-size:14px;
+  transition:.2s;
+}
 
-    .class-list {
-      padding: 8px 18px 18px;
-    }
+.nav-links a:hover{
+  color:#fff;
+}
 
-    .class-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 14px 5px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
+.home-btn{
+  padding:9px 16px;
+  border-radius:9px;
+  background:#fff;
+  color:#111 !important;
+  font-weight:700;
+}
 
-    .class-item:last-child {
-      border-bottom: 0;
-    }
+/* ================= HERO ================= */
 
-    .class-number {
-      font-weight: 700;
-    }
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px 45px;
+  text-align:center;
+}
 
-    .locked {
-      opacity: .65;
-    }
+.badge{
+  display:inline-block;
+  padding:7px 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;
+  background:rgba(255,255,255,.05);
+  color:#b9c4d0;
+  font-size:13px;
+  margin-bottom:18px;
+}
 
-    .course-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
+.hero h1{
+  font-size:clamp(36px,6vw,70px);
+  line-height:1.05;
+  margin-bottom:20px;
+}
 
-    .course-button {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      background: linear-gradient(90deg,#7c3aed,#06b6d4);
-      color: white;
-    }
+.hero h1 span{
+  color:#8fb7ff;
+}
 
-    .course-button.secondary {
-      background: rgba(255,255,255,.08);
-    }
+.hero p{
+  max-width:760px;
+  margin:auto;
+  color:#aeb8c5;
+  font-size:17px;
+}
 
-    @media (max-width: 600px) {
-      .course-page {
-        padding: 70px 15px 50px;
-      }
+.stats{
+  max-width:900px;
+  margin:35px auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
 
-      .course-box {
-        padding: 18px;
-      }
+.stat{
+  padding:20px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+}
 
-      .class-item {
-        font-size: 14px;
-      }
-    }
-  </style>
+.stat strong{
+  display:block;
+  font-size:27px;
+}
+
+.stat span{
+  color:#8d98a7;
+  font-size:13px;
+}
+
+/* ================= COURSE AREA ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.toolbar{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.search{
+  flex:1;
+  min-width:230px;
+  padding:14px 17px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#121821;
+  color:#fff;
+  outline:none;
+}
+
+.search:focus{
+  border-color:#779fff;
+}
+
+.filter{
+  padding:14px 17px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#121821;
+  color:#fff;
+  outline:none;
+}
+
+/* ================= COURSE CARDS ================= */
+
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.course-card{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;
+  overflow:hidden;
+  background:#111720;
+  transition:.25s;
+}
+
+.course-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,255,255,.2);
+}
+
+.course-cover{
+  height:145px;
+  padding:20px;
+  display:flex;
+  align-items:flex-end;
+  background:linear-gradient(135deg,#202d43,#101722);
+}
+
+.course-number{
+  font-size:13px;
+  color:#b7c4d6;
+}
+
+.course-card-body{
+  padding:20px;
+}
+
+.course-card h3{
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.course-card p{
+  color:#8f9aaa;
+  font-size:14px;
+  min-height:68px;
+}
+
+.category{
+  display:inline-block;
+  margin-top:14px;
+  padding:5px 10px;
+  border-radius:20px;
+  background:rgba(143,183,255,.1);
+  color:#9fbeff;
+  font-size:12px;
+}
+
+.course-info{
+  display:flex;
+  gap:15px;
+  margin:17px 0;
+  color:#8f9aaa;
+  font-size:12px;
+}
+
+.open-course{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#fff;
+  color:#111;
+  font-weight:700;
+}
+
+/* ================= CURRICULUM ================= */
+
+.curriculum{
+  display:none;
+  margin-top:40px;
+}
+
+.curriculum.active{
+  display:block;
+}
+
+.course-head{
+  padding:30px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;
+  background:#111720;
+  margin-bottom:20px;
+}
+
+.back-btn{
+  border:0;
+  background:none;
+  color:#a9c0ff;
+  margin-bottom:18px;
+}
+
+.course-head h2{
+  font-size:clamp(28px,5vw,45px);
+  margin-bottom:10px;
+}
+
+.course-head p{
+  color:#9aa5b3;
+  max-width:800px;
+}
+
+.progress-area{
+  margin-top:25px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  color:#aab4c1;
+  font-size:13px;
+}
+
+.progress-bar{
+  height:9px;
+  background:#202833;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#8fb7ff;
+  transition:.3s;
+}
+
+/* ================= MODULE ================= */
+
+.module{
+  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  overflow:hidden;
+  background:#10161e;
+}
+
+.module-title{
+  width:100%;
+  padding:20px;
+  border:0;
+  background:#151c26;
+  color:#fff;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-weight:700;
+}
+
+.module-title small{
+  color:#8995a5;
+  font-weight:400;
+}
+
+.class-list{
+  display:none;
+  padding:8px;
+}
+
+.class-list.open{
+  display:block;
+}
+
+.class-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:15px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.class-item:hover{
+  background:rgba(255,255,255,.04);
+}
+
+.class-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.class-number{
+  min-width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:#1d2734;
+  color:#a8c2ff;
+  font-size:12px;
+  font-weight:700;
+}
+
+.class-name{
+  font-size:14px;
+}
+
+.class-duration{
+  display:block;
+  color:#778394;
+  font-size:11px;
+  margin-top:2px;
+}
+
+.lesson-btn{
+  border:1px solid rgba(255,255,255,.12);
+  background:#18212c;
+  color:#fff;
+  padding:8px 13px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.lesson-btn:hover{
+  background:#fff;
+  color:#111;
+}
+
+.complete-btn{
+  border:0;
+  background:#1c2b26;
+  color:#78d4a0;
+  padding:8px 11px;
+  border-radius:8px;
+  font-size:11px;
+}
+
+/* ================= LESSON MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.8);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(850px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;
+  background:#111720;
+  padding:25px;
+  position:relative;
+}
+
+.close-modal{
+  position:absolute;
+  right:18px;
+  top:15px;
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+  background:#252e39;
+  color:#fff;
+}
+
+.lesson-label{
+  color:#9fbaff;
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.modal-box h2{
+  margin-bottom:15px;
+}
+
+.video-placeholder{
+  aspect-ratio:16/9;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:#080b0f;
+  border:1px solid rgba(255,255,255,.08);
+  margin:20px 0;
+  color:#6f7b8b;
+  text-align:center;
+  padding:20px;
+}
+
+.resources{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.resource{
+  padding:14px;
+  border-radius:10px;
+  background:#18212c;
+  text-align:center;
+  color:#aeb9c7;
+  font-size:13px;
+}
+
+.lesson-note{
+  margin-top:20px;
+  padding:18px;
+  border-radius:12px;
+  background:#151c25;
+  color:#99a5b4;
+  font-size:14px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  text-align:center;
+  padding:60px 20px;
+  color:#667282;
+  font-size:13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+  .course-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .nav-links{
+    gap:10px;
+  }
+
+  .nav-links a:not(.home-btn){
+    display:none;
+  }
+}
+
+@media(max-width:600px){
+  .nav{
+    padding:10px 14px;
+  }
+
+  .brand{
+    font-size:15px;
+  }
+
+  .brand img{
+    width:36px;
+    height:36px;
+  }
+
+  .hero{
+    padding:55px 15px 30px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .course-grid{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:15px;
+  }
+
+  .course-head{
+    padding:20px;
+  }
+
+  .class-item{
+    align-items:flex-start;
+  }
+
+  .class-left{
+    min-width:0;
+  }
+
+  .class-name{
+    font-size:13px;
+  }
+
+  .lesson-btn{
+    flex-shrink:0;
+  }
+
+  .resources{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header class="nav">
-  <a class="brand" href="index.html">
-    <img src="logo.svg" alt="Maya Shadow Academy logo">
-  </a>
+<!-- ================= HEADER ================= -->
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
-    <a href="index.html#classes">Recorded Classes</a>
-    <a href="index.html#resources">Resources</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#buy">Store</a>
-    <a href="index.html#contact">Contact</a>
+<header class="header">
+  <nav class="nav">
+
+    <a href="index.html" class="brand">
+      <img src="logo.svg" alt="Maya Shadow Academy">
+      <span>Maya Shadow Academy</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#curriculum">My Learning</a>
+      <a href="index.html" class="home-btn">Academy Home</a>
+    </div>
+
   </nav>
 </header>
 
-<main class="course-page">
 
-  <section class="course-hero">
-    <span class="eyebrow">MAYA SHADOW ACADEMY</span>
+<!-- ================= HERO ================= -->
 
-    <h1>
-      Learn. Create.<br>
-      Build Your Future.
-    </h1>
+<section class="hero">
 
-    <p>
-      Professional step-by-step courses designed to take you
-      from software installation to complete animation production.
-    </p>
-  </section>
+  <div class="badge">🎓 PROFESSIONAL ONLINE ACADEMY</div>
 
+  <h1>
+    Learn. Create. <span>Master.</span>
+  </h1>
 
-  <!-- =========================================
-       COURSE 01
-       ========================================= -->
+  <p>
+    Learn animation, graphic design, audio, video editing,
+    AI content creation, storytelling and YouTube production
+    through structured professional courses.
+  </p>
 
-  <section class="course-box">
+  <div class="stats">
 
-    <h2>🎬 Cartoon Animator 5 — Complete Animation Course</h2>
-
-    <p>
-      Beginner to Advanced training covering software setup,
-      character creation, rigging, animation, scene building
-      and complete story production.
-    </p>
-
-    <div class="course-meta">
-      <span>Beginner → Advanced</span>
-      <span>Practical Training</span>
-      <span>Character Building</span>
-      <span>Story Animation</span>
+    <div class="stat">
+      <strong id="courseCount">17</strong>
+      <span>Professional Courses</span>
     </div>
 
-
-    <!-- MODULE 01 -->
-
-    <details class="module">
-      <summary>Module 01 — Software Download & Installation</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span><span class="class-number">Class 01</span> — Course Introduction</span>
-          <span>▶</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 02</span> — Software Download</span>
-          <span>▶</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 03</span> — Software Installation</span>
-          <span>▶</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 04</span> — Basic Setup & Preferences</span>
-          <span>▶</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <!-- MODULE 02 -->
-
-    <details class="module">
-      <summary>Module 02 — Complete Software Overview</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span><span class="class-number">Class 05</span> — Complete Interface Overview</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 06</span> — Toolbar & Main Tools</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 07</span> — Stage & Timeline</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 08</span> — Content Manager</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 09</span> — Character Controls</span>
-          <span>🔒</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <!-- MODULE 03 -->
-
-    <details class="module">
-      <summary>Module 03 — Character Basics</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span><span class="class-number">Class 10</span> — Character Structure</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 11</span> — Character Types</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 12</span> — Character Template</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 13</span> — Character Layer Structure</span>
-          <span>🔒</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <!-- MODULE 04 -->
-
-    <details class="module">
-      <summary>Module 04 — Male Character Making</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span><span class="class-number">Class 14</span> — Male Character Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 15</span> — Male Face Marking</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 16</span> — Hair Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 17</span> — Eyes & Eyebrows</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 18</span> — Nose & Mouth</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 19</span> — Male Body Structure</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 20</span> — Shirt / T-Shirt</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 21</span> — Pant / Lungi / Dhoti</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 22</span> — Hand & Finger Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 23</span> — Foot & Shoe Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 24</span> — Complete Male Character Assembly</span>
-          <span>🔒</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <!-- MODULE 05 -->
-
-    <details class="module">
-      <summary>Module 05 — Female Character Making</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span><span class="class-number">Class 25</span> — Female Character Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 26</span> — Female Face Marking</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 27</span> — Hair & Hairstyle</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 28</span> — Eyes & Facial Features</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 29</span> — Female Body Structure</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 30</span> — Blouse Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 31</span> — Saree Setup</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 32</span> — Saree Layering</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 33</span> — Hand & Finger Design</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 34</span> — Jewellery & Accessories</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span><span class="class-number">Class 35</span> — Complete Female Character Assembly</span>
-          <span>🔒</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <!-- FUTURE MODULE PLACEHOLDERS -->
-
-    <details class="module">
-      <summary>Module 06 — Character Rigging & Advanced Setup</summary>
-
-      <div class="class-list">
-
-        <div class="class-item">
-          <span>Class 36 — Rigging Fundamentals</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span>Class 37 — Body Rigging</span>
-          <span>🔒</span>
-        </div>
-
-        <div class="class-item">
-          <span>Class 38 — Face Rigging</span>
-          <span>🔒</span>
-        </div>
-
-      </div>
-    </details>
-
-
-    <details class="module">
-      <summary>Module 07 — Facial Animation & Lip Sync</summary>
-
-      <div class="class-list">
-        <div class="class-item locked">
-          <span>More classes will be added</span>
-          <span>🔒</span>
-        </div>
-      </div>
-    </details>
-
-
-    <details class="module">
-      <summary>Module 08 — Walking & Body Animation</summary>
-
-      <div class="class-list">
-        <div class="class-item locked">
-          <span>More classes will be added</span>
-          <span>🔒</span>
-        </div>
-      </div>
-    </details>
-
-
-    <details class="module">
-      <summary>Module 09 — Scene & Camera Building</summary>
-
-      <div class="class-list">
-        <div class="class-item locked">
-          <span>More classes will be added</span>
-          <span>🔒</span>
-        </div>
-      </div>
-    </details>
-
-
-    <details class="module">
-      <summary>Module 10 — Complete Story Animation Project</summary>
-
-      <div class="class-list">
-        <div class="class-item locked">
-          <span>More classes will be added</span>
-          <span>🔒</span>
-        </div>
-      </div>
-    </details>
-
-
-    <div class="course-actions">
-      <a href="#" class="course-button">View Course Details</a>
-      <a href="index.html#buy" class="course-button secondary">Buy Course</a>
+    <div class="stat">
+      <strong id="moduleCount">0</strong>
+      <span>Total Modules</span>
     </div>
 
-  </section>
-
-
-  <!-- FUTURE COURSES -->
-
-  <section class="course-box">
-
-    <h2>🎨 Photoshop — Complete Course</h2>
-
-    <p>
-      Software setup → Interface → Tools → Layers → Masking →
-      Character Design → Background Design → Thumbnail Design →
-      Advanced Projects.
-    </p>
-
-    <div class="course-actions">
-      <a href="#" class="course-button">Coming Soon</a>
+    <div class="stat">
+      <strong id="classCount">0</strong>
+      <span>Total Classes</span>
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <section class="course-box">
+<!-- ================= COURSE DIRECTORY ================= -->
 
-    <h2>✒️ Adobe Illustrator — Complete Course</h2>
+<section id="courses" class="container">
 
-    <p>
-      Software setup → Interface → Shape Tools → Pen Tool →
-      Vector Drawing → Character Design → Animation Assets →
-      Advanced Projects.
-    </p>
+  <div class="toolbar">
 
-    <div class="course-actions">
-      <a href="#" class="course-button">Coming Soon</a>
+    <input
+      type="search"
+      id="search"
+      class="search"
+      placeholder="🔎 Search courses..."
+    >
+
+    <select id="categoryFilter" class="filter">
+      <option value="all">All Categories</option>
+      <option value="Animation">Animation</option>
+      <option value="Graphic Design">Graphic Design</option>
+      <option value="Audio & Voice">Audio & Voice</option>
+      <option value="Video Editing">Video Editing</option>
+      <option value="AI & Content Creation">AI & Content Creation</option>
+      <option value="YouTube & Story">YouTube & Story</option>
+    </select>
+
+  </div>
+
+  <div id="courseGrid" class="course-grid"></div>
+
+</section>
+
+
+<!-- ================= CURRICULUM ================= -->
+
+<section id="curriculum" class="container curriculum">
+
+  <div class="course-head">
+
+    <button class="back-btn" onclick="closeCourse()">
+      ← Back to All Courses
+    </button>
+
+    <h2 id="selectedCourseTitle"></h2>
+
+    <p id="selectedCourseDescription"></p>
+
+    <div class="progress-area">
+
+      <div class="progress-top">
+        <span>Course Progress</span>
+        <span id="progressText">0%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
     </div>
 
-  </section>
+  </div>
+
+  <div id="moduleContainer"></div>
+
+</section>
 
 
-  <section class="course-box">
+<!-- ================= LESSON MODAL ================= -->
 
-    <h2>🎙️ Adobe Audition — Voice & Audio Course</h2>
+<div id="lessonModal" class="modal">
 
-    <p>
-      Recording → Noise Reduction → EQ → Compression →
-      Voice Processing → Mixing → Mastering.
-    </p>
+  <div class="modal-box">
 
-    <div class="course-actions">
-      <a href="#" class="course-button">Coming Soon</a>
+    <button class="close-modal" onclick="closeLesson()">✕</button>
+
+    <div class="lesson-label" id="lessonModule"></div>
+
+    <h2 id="lessonTitle"></h2>
+
+    <div class="video-placeholder">
+      🎥<br>
+      Course Video Will Appear Here<br>
+      <small>Add your private/unlisted video URL in the course data later.</small>
     </div>
 
-  </section>
+    <div class="resources">
 
+      <div class="resource">
+        📄<br>
+        Notes / PDF
+      </div>
 
-  <section class="course-box">
+      <div class="resource">
+        📦<br>
+        Project Files
+      </div>
 
-    <h2>🎞️ DaVinci Resolve — Complete Video Editing</h2>
+      <div class="resource">
+        📝<br>
+        Assignment
+      </div>
 
-    <p>
-      Media → Cut → Edit → Fusion → Color → Fairlight →
-      Audio Mixing → Final Export.
-    </p>
-
-    <div class="course-actions">
-      <a href="#" class="course-button">Coming Soon</a>
     </div>
 
-  </section>
-
-
-  <section class="course-box">
-
-    <h2>🎬 Premiere Pro — Professional Video Editing</h2>
-
-    <p>
-      Beginner → Intermediate → Advanced → Complete Story
-      Editing Project.
-    </p>
-
-    <div class="course-actions">
-      <a href="#" class="course-button">Coming Soon</a>
+    <div class="lesson-note">
+      <strong>Lesson Information</strong><br><br>
+      This lesson is part of the professional Maya Shadow Academy
+      curriculum. Video, notes, project files and assignments can
+      be connected here later.
     </div>
 
-  </section>
+  </div>
 
-</main>
+</div>
 
 
-<!-- WhatsApp -->
+<!-- ================= FOOTER ================= -->
 
-<a
-  href="https://wa.me/917908279118?text=Hello%20Maya%20Shadow%20Academy%2C%20I%20want%20to%20know%20more%20about%20your%20courses."
-  class="whatsapp-float"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Chat with Maya Shadow Academy on WhatsApp"
->
-  💬
-</a>
+<footer class="footer">
+  © 2026 Maya Shadow Academy · Learn Today · Create Tomorrow
+</footer>
 
-</body>
-</html>
+
+<script>
+
+/* =========================================================
+   MAYA SHADOW ACADEMY
+   MASTER COURSE DATABASE
+
+   ভবিষ্যতে নতুন Course / Module / Class যোগ করতে
+   মূল website design পরিবর্তন করতে হবে না।
+   শুধু নিচের data-তে নতুন information যোগ করবেন।
+========================================================= */
+
+const courses = [
+
+/* ================= 01 ================= */
+
+{
+ id:"animation-master",
+ title:"Complete 2.5D Cartoon Story Animation Master Course",
+ category:"Animation",
+ description:"Complete workflow for creating professional 2.5D cartoon stories from idea to final animated video.",
+ modules:[
+  {
+   title:"Module 01 — Animation Foundation",
+   classes:[
+    ["01","Introduction to 2.5D Animation","12 min"],
+    ["02","2D vs 2.5D vs 3D Animation","18 min"],
+    ["03","Understanding Cartoon Story Production","20 min"],
+    ["04","Complete Animation Workflow","22 min"]
+   ]
+  },
+  {
+   title:"Module 02 — Story & Pre-Production",
+   classes:[
+    ["05","Story Idea Development","20 min"],
+    ["06","Character & Story Planning","25 min"],
+    ["07","Storyboard Creation","30 min"],
+    ["08","Scene Breakdown","22 min"]
+   ]
+  },
+  {
+   title:"Module 03 — Background & Environment",
+   classes:[
+    ["09","Rural Village Background","25 min"],
+    ["10","Interior Background Design","28 min"],
+    ["11","Outdoor Environment","25 min"],
+    ["12","Lighting & Atmosphere","30 min"]
+   ]
+  },
+  {
+   title:"Module 04 — Character Production",
+   classes:[
+    ["13","Character Design Basics","25 min"],
+    ["14","Male Character Creation","35 min"],
+    ["15","Female Character Creation","35 min"],
+    ["16","Child & Elderly Characters","30 min"]
+   ]
+  },
+  {
+   title:"Module 05 — Animation Production",
+   classes:[
+    ["17","Character Movement","30 min"],
+    ["18","Walking Animation","35 min"],
+    ["19","Facial Animation","30 min"],
+    ["20","Lip Sync","35 min"]
+   ]
+  },
+  {
+   title:"Module 06 — Complete Story Project",
+   classes:[
+    ["21","Scene Assembly","35 min"],
+    ["22","Camera & Cinematic Shots","30 min"],
+    ["23","Sound & Voice Integration","30 min"],
+    ["24","Final Story Production","45 min"]
+   ]
+  }
+ ]
+},
+
+/* ================= 02 ================= */
+
+{
+ id:"cartoon-animator",
+ title:"Cartoon Animator 5 — Complete Course",
+ category:"Animation",
+ description:"From software installation to professional character rigging, facial animation, lip sync and complete story production.",
+ modules:[
+  {
+   title:"Module 01 — Software Download & Installation",
+   classes:[
+    ["01","Course Introduction","10 min"],
+    ["02","Software Download","15 min"],
+    ["03","Software Installation","15 min"],
+    ["04","Basic Setup & Preferences","18 min"]
+   ]
+  },
+  {
+   title:"Module 02 — Complete Software Overview",
+   classes:[
+    ["05","Complete Interface Overview","20 min"],
+    ["06","Toolbar & Main Tools","25 min"],
+    ["07","Stage & Timeline","22 min"],
+    ["08","Content Manager","20 min"],
+    ["09","Character Controls","25 min"]
+   ]
+  },
+  {
+   title:"Module 03 — Character Basics",
+   classes:[
+    ["10","Character Structure","25 min"],
+    ["11","Character Marking","30 min"],
+    ["12","Body Parts & Layers","28 min"],
+    ["13","Character Setup","30 min"]
+   ]
+  },
+  {
+   title:"Module 04 — Male Character Making",
+   classes:[
+    ["14","Male Character Design","30 min"],
+    ["15","Body Construction","35 min"],
+    ["16","Clothing Setup","30 min"],
+    ["17","Male Character Rigging","40 min"]
+   ]
+  },
+  {
+   title:"Module 05 — Female Character Making",
+   classes:[
+    ["18","Female Character Design","30 min"],
+    ["19","Body & Clothing Setup","35 min"],
+    ["20","Hair & Accessories","25 min"],
+    ["21","Female Character Rigging","40 min"]
+   ]
+  },
+  {
+   title:"Module 06 — Character Rigging & Advanced Setup",
+   classes:[
+    ["22","Advanced Bone Setup","40 min"],
+    ["23","Spring & Flexibility","30 min"],
+    ["24","Advanced Character Controls","35 min"],
+    ["25","Character Testing","25 min"]
+   ]
+  },
+  {
+   title:"Module 07 — Facial Animation & Lip Sync",
+   classes:[
+    ["26","Face Setup","25 min"],
+    ["27","Eye Animation","25 min"],
+    ["28","Mouth Shapes","30 min"],
+    ["29","Automatic Lip Sync","25 min"],
+    ["30","Manual Lip Sync","30 min"]
+   ]
+  },
+  {
+   title:"Module 08 — Walking & Body Animation",
+   classes:[
+    ["31","Basic Body Movement","25 min"],
+    ["32","Walking Animation","35 min"],
+    ["33","Running & Action","30 min"],
+    ["34","Hand & Body Gestures","30 min"]
+   ]
+  },
+  {
+   title:"Module 09 — Scene & Camera Building",
+   classes:[
+    ["35","Scene Setup","25 min"],
+    ["36","Camera System","30 min"],
+    ["37","Camera Movement","30 min"],
+    ["38","Cinematic Composition","35 min"]
+   ]
+  },
+  {
+   title:"Module 10 — Complete Story Animation Project",
+   classes:[
+    ["39","Story Project Planning","30 min"],
+    ["40","Scene Production","40 min"],
+    ["41","Character Animation","45 min"],
+    ["42","Voice & Sound","30 min"],
+    ["43","Final Rendering","30 min"]
+   ]
+  }
+ ]
+},
+
+/* ================= 03 ================= */
+
+{
+ id:"photoshop",
+ title:"Photoshop — Complete Course",
+ category:"Graphic Design",
+ description:"Learn Photoshop from beginner fundamentals to professional image editing, compositing and design.",
+ modules:[
+  {
+   title:"Module 01 — Photoshop Foundation",
+   classes:[
+    ["01","Introduction to Photoshop","15 min"],
+    ["02","Interface & Workspace","20 min"],
+    ["03","Tools Overview","25 min"],
+    ["04","Document & Canvas Setup","20 min"]
+   ]
+  },
+  {
+   title:"Module 02 — Selection & Layer Mastery",
+   classes:[
+    ["05","Selection Tools","25 min"],
+    ["06","Layers","25 min"],
+    ["07","Layer Masks","30 min"],
+    ["08","Smart Objects","25 min"]
+   ]
+  },
+  {
+   title:"Module 03 — Professional Image Editing",
+   classes:[
+    ["09","Color Correction","30 min"],
+    ["10","Retouching","35 min"],
+    ["11","Background Removal","25 min"],
+    ["12","Photo Manipulation","40 min"]
+   ]
+  }
+ ]
+},
+
+/* ================= 04 ================= */
+
+{
+ id:"illustrator",
+ title:"Adobe Illustrator — Complete Course",
+ category:"Graphic Design",
+ description:"Master vector graphics, logo design, illustration and professional graphic design.",
+ modules:[
+  {
+   title:"Module 01 — Illustrator Foundation",
+   classes:[
+    ["01","Introduction","15 min"],
+    ["02","Interface & Workspace","20 min"],
+    ["03","Selection & Shape Tools","25 min"],
+    ["04","Pen Tool","30 min"]
+   ]
+  },
+  {
+   title:"Module 02 — Vector Design",
+   classes:[
+    ["05","Shapes & Pathfinder","25 min"],
+    ["06","Colors & Gradients","25 min"],
+    ["07","Typography","30 min"],
+    ["08","Vector Illustration","35 min"]
+   ]
+  },
+  {
+   title:"Module 03 — Professional Projects",
+   classes:[
+    ["09","Logo Design","40 min"],
+    ["10","Character Vector Design","40 min"],
+    ["11","Poster Design","35 min"],
+    ["12","Final Project","45 min"]
+   ]
+  }
+ ]
+},
+
+/* ================= 05 ================= */
+
+{
+ id:"audition",
+ title:"Adobe Audition — Complete Course",
+ category:"Audio & Voice",
+ description:"Professional audio recording, cleaning, editing, mixing and mastering.",
+ modules:[
+  {
+   title:"Module 01 — Recording Foundation",
+   classes:[
+    ["01","Audio Basics","15 min"],
+    ["02","Microphone Setup","20 min"],
+    ["03","Recording Settings","20 min"],
+    ["04","Professional Recording Workflow","25 min"]
+   ]
+  },
+  {
+   title:"Module 02 — Voice Editing",
+   classes:[
+    ["05",      
