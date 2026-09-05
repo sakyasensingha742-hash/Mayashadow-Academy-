@@ -1,4 +1,9 @@
-/* =========================================================
+{
+/* ============================================================
+    MAYA SHADOW ACADEMY
+    MASTER COURSE DATABASE
+    Version 1.0
+============================================================ *//* =========================================================
    MAYA SHADOW ACADEMY
    MASTER COURSE DATABASE
    Version 1.0
@@ -935,3 +940,10 @@ console.log(
   courses.length,
   "courses"
 );
+console.log(
+  "Maya Shadow Academy Course Database Loaded:",
+  courses.length,
+  "courses"
+);
+
+}
