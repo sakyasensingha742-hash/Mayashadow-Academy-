@@ -787,50 +787,166 @@ a{
   <div class="modal-box">
 
     <button class="close-modal" onclick="closeLesson()">
-      ×
+        ×
     </button>
 
-    <h3 id="modalTitle">
-      Lesson
-    </h3>
+    <div class="lesson-header">
+        <div class="lesson-number" id="modalLessonNumber">
+            01
+        </div>
 
-    <p id="modalDescription">
-      Lesson information will appear here.
-    </p>
+        <div>
+            <h3 id="modalTitle">
+                Lesson
+            </h3>
 
-    <div class="lesson-resources">
+            <p id="modalDescription">
+                Lesson information will appear here.
+            </p>
+        </div>
+    </div>
 
-      <div class="resource-box">
-        <strong>🎥 Video Lesson</strong>
-        <span id="videoStatus">
-          Video will be added when the lesson is published.
-        </span>
-      </div>
 
-      <div class="resource-box">
-        <strong>📄 Notes / PDF</strong>
-        <span id="notesStatus">
-          Notes will be available here.
-        </span>
-      </div>
+    <!-- COURSE PROGRESS -->
+    <div class="lesson-progress-box">
 
-      <div class="resource-box">
-        <strong>📦 Project Files / Resources</strong>
-        <span id="resourceStatus">
-          Project resources will be added here.
-        </span>
-      </div>
+        <div class="lesson-progress-top">
+            <strong>Course Progress</strong>
 
-      <div class="resource-box">
-        <strong>📝 Assignment</strong>
-        <span id="assignmentStatus">
-          Assignment will be added here.
-        </span>
-      </div>
+            <span id="lessonProgressText">
+                0%
+            </span>
+        </div>
+
+        <div class="lesson-progress-track">
+            <div
+                id="lessonProgressBar"
+                class="lesson-progress-bar"
+                style="width:0%;"
+            ></div>
+        </div>
 
     </div>
 
-  </div>
+
+    <!-- VIDEO -->
+    <div class="lesson-resource-card">
+
+        <div class="lesson-resource-icon">
+            🎥
+        </div>
+
+        <div class="lesson-resource-content">
+
+            <h4>Video Lesson</h4>
+
+            <div id="videoStatus">
+                Video will be added when the lesson is published.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTES -->
+    <div class="lesson-resource-card">
+
+        <div class="lesson-resource-icon">
+            📄
+        </div>
+
+        <div class="lesson-resource-content">
+
+            <h4>Notes / PDF</h4>
+
+            <div id="notesStatus">
+                Notes will be available here.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROJECT RESOURCES -->
+    <div class="lesson-resource-card">
+
+        <div class="lesson-resource-icon">
+            📦
+        </div>
+
+        <div class="lesson-resource-content">
+
+            <h4>Project Files / Resources</h4>
+
+            <div id="resourceStatus">
+                Project resources will be added here.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ASSIGNMENT -->
+    <div class="lesson-resource-card">
+
+        <div class="lesson-resource-icon">
+            📝
+        </div>
+
+        <div class="lesson-resource-content">
+
+            <h4>Assignment</h4>
+
+            <div id="assignmentStatus">
+                Assignment will be added here.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMPLETE BUTTON -->
+    <div class="lesson-complete-box">
+
+        <button
+            id="completeLessonBtn"
+            class="complete-lesson-btn"
+            type="button"
+        >
+            ✅ Mark as Complete
+        </button>
+
+        <div id="completionStatus">
+            Not completed
+        </div>
+
+    </div>
+
+
+    <!-- PREVIOUS / NEXT -->
+    <div class="lesson-navigation">
+
+        <button
+            id="previousLessonBtn"
+            type="button"
+            class="lesson-nav-btn"
+        >
+            ← Previous Class
+        </button>
+
+        <button
+            id="nextLessonBtn"
+            type="button"
+            class="lesson-nav-btn"
+        >
+            Next Class →
+        </button>
+
+    </div>
 
 </div>
 
