@@ -2,1255 +2,1471 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Maya Shadow Academy | Courses</title>
 
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 
 <style>
+
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#070b14;
-color:#f5f7ff;
-line-height:1.6;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07101d;
+  color:#f5f7ff;
+  line-height:1.6;
 }
 
 button,
 input,
 select{
-font:inherit;
+  font:inherit;
 }
 
 button{
-cursor:pointer;
+  cursor:pointer;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
-/* HEADER */
+
+/* ================= HEADER ================= */
 
 .header{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(7,11,20,.94);
-backdrop-filter:blur(16px);
-border-bottom:1px solid rgba(255,255,255,.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,16,29,.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav{
-max-width:1250px;
-margin:auto;
-min-height:76px;
-padding:12px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
+  max-width:1200px;
+  margin:auto;
+  min-height:72px;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
 .brand{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:19px;
-font-weight:800;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:20px;
+  font-weight:800;
 }
 
 .brand img{
-width:44px;
-height:44px;
+  width:42px;
+  height:42px;
+  object-fit:contain;
 }
 
 .nav-links{
-display:flex;
-align-items:center;
-gap:25px;
+  display:flex;
+  gap:24px;
+  align-items:center;
 }
 
 .nav-links a{
-color:#cbd2e4;
-font-size:15px;
-transition:.2s;
+  color:#dce3eb;
+  font-size:14px;
+  transition:.2s;
 }
 
 .nav-links a:hover{
-color:#63dff5;
-}
-
-.menu-btn{
-display:none;
-background:none;
-border:0;
-color:#fff;
-font-size:30px;
-}
-
-/* HERO */
-
-.hero{
-max-width:1250px;
-margin:auto;
-padding:95px 20px 55px;
-text-align:center;
-}
-
-.badge{
-display:inline-block;
-padding:10px 18px;
-border:1px solid rgba(255,255,255,.14);
-border-radius:40px;
-color:#63dff5;
-letter-spacing:2px;
-font-size:13px;
-font-weight:700;
-margin-bottom:25px;
-}
-
-.hero h1{
-font-size:clamp(42px,7vw,78px);
-line-height:1.05;
-margin-bottom:22px;
-}
-
-.gradient{
-background:linear-gradient(90deg,#8b5cf6,#22d3ee);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.hero p{
-max-width:800px;
-margin:auto;
-font-size:20px;
-color:#9da8bf;
-}
-
-/* STATS */
-
-.stats{
-max-width:1250px;
-margin:10px auto 60px;
-padding:0 20px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-.stat{
-padding:30px;
-text-align:center;
-background:#101622;
-border:1px solid rgba(255,255,255,.1);
-border-radius:24px;
-}
-
-.stat strong{
-display:block;
-font-size:42px;
-margin-bottom:8px;
-}
-
-.stat span{
-color:#9da8bf;
-}
-
-/* DIRECTORY */
-
-.container{
-max-width:1250px;
-margin:auto;
-padding:0 20px 80px;
-}
-
-.section-title{
-margin-bottom:28px;
-}
-
-.section-title span{
-color:#63dff5;
-letter-spacing:4px;
-font-size:13px;
-font-weight:800;
-}
-
-.section-title h2{
-font-size:42px;
-margin-top:8px;
-}
-
-.toolbar{
-display:grid;
-grid-template-columns:1fr 240px;
-gap:15px;
-margin-bottom:35px;
-}
-
-.search,
-.filter{
-width:100%;
-padding:17px 20px;
-background:#101622;
-color:#fff;
-border:1px solid rgba(255,255,255,.12);
-border-radius:16px;
-outline:none;
-}
-
-.search:focus,
-.filter:focus{
-border-color:#4fdff4;
-}
-
-/* COURSE GRID */
-
-.course-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:22px;
-}
-
-.course-card{
-background:linear-gradient(145deg,#111827,#0c111d);
-border:1px solid rgba(255,255,255,.1);
-border-radius:24px;
-padding:28px;
-transition:.25s;
-}
-
-.course-card:hover{
-transform:translateY(-5px);
-border-color:rgba(99,223,245,.35);
-}
-
-.course-icon{
-font-size:42px;
-margin-bottom:18px;
-}
-
-.course-card h3{
-font-size:24px;
-margin-bottom:10px;
-}
-
-.course-card p{
-color:#9da8bf;
-margin-bottom:20px;
-min-height:52px;
-}
-
-.course-meta{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-bottom:22px;
-}
-
-.course-meta span{
-padding:7px 11px;
-border-radius:20px;
-background:rgba(255,255,255,.06);
-color:#b7c0d3;
-font-size:12px;
-}
-
-.view-btn{
-display:inline-block;
-padding:12px 18px;
-border-radius:12px;
-background:linear-gradient(90deg,#7c3aed,#06b6d4);
-color:#fff;
-font-weight:700;
-border:0;
-}
-
-/* CURRICULUM */
-
-.curriculum{
-display:none;
-}
-
-.curriculum.active{
-display:block;
-}
-
-.course-top{
-display:flex;
-justify-content:space-between;
-align-items:flex-start;
-gap:20px;
-margin-bottom:25px;
+  color:#7dd3fc;
 }
 
 .back-btn{
-padding:11px 16px;
-border-radius:12px;
-background:#111827;
-color:#dce3f5;
-border:1px solid rgba(255,255,255,.1);
+  padding:9px 15px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  background:#111d2d;
 }
 
-.course-top h2{
-font-size:36px;
-margin-bottom:8px;
-}
 
-.course-top p{
-color:#9da8bf;
-}
-
-/* PROGRESS */
-
-.progress-box{
-margin:25px 0;
-padding:22px;
-background:#101622;
-border:1px solid rgba(255,255,255,.1);
-border-radius:18px;
-}
-
-.progress-head{
-display:flex;
-justify-content:space-between;
-margin-bottom:10px;
-color:#cbd2e4;
-}
-
-.progress-bar{
-height:10px;
-background:#202938;
-border-radius:20px;
-overflow:hidden;
-}
-
-.progress-fill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#7c3aed,#06b6d4);
-transition:.3s;
-}
-
-/* MODULE */
-
-.module{
-margin-bottom:16px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:18px;
-overflow:hidden;
-background:#0e1420;
-}
-
-.module-header{
-width:100%;
-padding:20px;
-background:#111827;
-border:0;
-color:#fff;
-display:flex;
-justify-content:space-between;
-align-items:center;
-text-align:left;
-}
-
-.module-title{
-font-size:18px;
-font-weight:800;
-}
-
-.module-count{
-color:#8e9ab0;
-font-size:13px;
-}
-
-.class-list{
-display:none;
-}
-
-.module.open .class-list{
-display:block;
-}
-
-.class-item{
-display:flex;
-align-items:center;
-gap:15px;
-padding:16px 20px;
-border-top:1px solid rgba(255,255,255,.06);
-}
-
-.class-number{
-width:40px;
-height:40px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-background:#182131;
-color:#63dff5;
-font-weight:800;
-flex-shrink:0;
-}
-
-.class-info{
-flex:1;
-}
-
-.class-info strong{
-display:block;
-margin-bottom:3px;
-}
-
-.class-info small{
-color:#8995aa;
-}
-
-.class-open{
-padding:9px 14px;
-border-radius:10px;
-border:1px solid rgba(99,223,245,.3);
-background:transparent;
-color:#63dff5;
-font-weight:700;
-}
-
-/* LESSON */
-
-.lesson-panel{
-display:none;
-margin-top:30px;
-padding:28px;
-background:#101622;
-border:1px solid rgba(255,255,255,.1);
-border-radius:24px;
-}
-
-.lesson-panel.active{
-display:block;
-}
-
-.lesson-label{
-color:#63dff5;
-font-size:13px;
-font-weight:800;
-letter-spacing:2px;
-margin-bottom:8px;
-}
-
-.lesson-panel h3{
-font-size:30px;
-margin-bottom:8px;
-}
-
-.lesson-desc{
-color:#9da8bf;
-margin-bottom:25px;
-}
-
-.video-box{
-aspect-ratio:16/9;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-border-radius:18px;
-background:linear-gradient(135deg,#17153a,#07394a);
-border:1px solid rgba(255,255,255,.08);
-margin-bottom:22px;
-}
-
-.play{
-width:72px;
-height:72px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-background:#63dff5;
-color:#061019;
-font-size:30px;
-}
-
-.resources{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin-bottom:25px;
-}
-
-.resource{
-padding:18px;
-background:#151d2b;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.resource strong{
-display:block;
-margin-bottom:5px;
-}
-
-.resource span{
-color:#8f9bb0;
-font-size:13px;
-}
-
-.lesson-actions{
-display:flex;
-justify-content:space-between;
-gap:10px;
-}
-
-.lesson-actions button{
-padding:12px 18px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.1);
-background:#151d2b;
-color:#fff;
-}
-
-.lesson-actions .complete{
-background:linear-gradient(90deg,#7c3aed,#06b6d4);
-border:0;
-font-weight:700;
-}
-
-/* EMPTY */
-
-.empty{
-padding:50px;
-text-align:center;
-color:#8995aa;
-display:none;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-.nav{
-min-height:70px;
-}
-
-.nav-links{
-display:none;
-position:absolute;
-top:70px;
-left:0;
-right:0;
-padding:20px;
-background:#080d17;
-flex-direction:column;
-border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.nav-links.show{
-display:flex;
-}
-
-.menu-btn{
-display:block;
-}
+/* ================= HERO ================= */
 
 .hero{
-padding-top:70px;
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px 45px;
+  text-align:center;
+}
+
+.hero-badge{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:30px;
+  background:rgba(56,189,248,.12);
+  color:#7dd3fc;
+  border:1px solid rgba(125,211,252,.2);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(32px,6vw,58px);
+  line-height:1.08;
+  margin-bottom:18px;
+}
+
+.hero h1 span{
+  color:#38bdf8;
 }
 
 .hero p{
-font-size:17px;
+  max-width:760px;
+  margin:auto;
+  color:#aebdce;
+  font-size:17px;
 }
+
+
+/* ================= STATS ================= */
 
 .stats{
-grid-template-columns:1fr;
+  max-width:900px;
+  margin:0 auto 45px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.toolbar{
-grid-template-columns:1fr;
+.stat{
+  background:#0d1929;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
 }
 
-.course-grid{
-grid-template-columns:1fr;
+.stat strong{
+  display:block;
+  font-size:27px;
+  color:#7dd3fc;
 }
 
-.course-top{
-flex-direction:column;
+.stat span{
+  color:#9caec2;
+  font-size:13px;
 }
 
-.resources{
-grid-template-columns:1fr;
+
+/* ================= FILTER ================= */
+
+.filter-box{
+  max-width:1200px;
+  margin:0 auto 35px;
+  padding:0 20px;
 }
 
-.class-item{
-align-items:flex-start;
+.filter-inner{
+  background:#0c1828;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:18px;
+  display:grid;
+  grid-template-columns:1fr 230px;
+  gap:12px;
 }
 
-.class-open{
-padding:8px 10px;
-font-size:12px;
+.search{
+  width:100%;
+  background:#07101d;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:13px 15px;
+  outline:none;
 }
 
-.course-top h2{
-font-size:28px;
+.search:focus{
+  border-color:#38bdf8;
 }
 
+.category{
+  width:100%;
+  background:#07101d;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:13px 15px;
+  outline:none;
 }
 
-@media(max-width:500px){
 
-.hero h1{
-font-size:42px;
+/* ================= COURSES ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px 70px;
+}
+
+.section-title{
+  margin-bottom:22px;
 }
 
 .section-title h2{
-font-size:32px;
+  font-size:28px;
+}
+
+.section-title p{
+  color:#8fa2b8;
+  font-size:14px;
+}
+
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .course-card{
-padding:22px;
+  background:linear-gradient(145deg,#101e31,#0b1625);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  overflow:hidden;
+  transition:.25s;
 }
 
-.class-item{
-flex-wrap:wrap;
+.course-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(56,189,248,.4);
 }
 
-.class-info{
-min-width:calc(100% - 55px);
+.course-top{
+  padding:24px;
 }
 
-.class-open{
-margin-left:55px;
+.course-icon{
+  width:55px;
+  height:55px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:rgba(56,189,248,.1);
+  font-size:28px;
+  margin-bottom:17px;
 }
 
+.course-category{
+  color:#7dd3fc;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.6px;
 }
+
+.course-card h3{
+  font-size:19px;
+  line-height:1.3;
+  margin:8px 0 12px;
+}
+
+.course-description{
+  color:#93a5ba;
+  font-size:13px;
+  min-height:62px;
+}
+
+.course-meta{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+
+.meta{
+  background:#07101d;
+  border-radius:8px;
+  padding:6px 9px;
+  font-size:11px;
+  color:#aebdce;
+}
+
+.course-bottom{
+  padding:15px 24px 22px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.view-course{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:#38bdf8;
+  color:#06101b;
+  font-weight:800;
+  transition:.2s;
+}
+
+.view-course:hover{
+  background:#7dd3fc;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:#8fa2b8;
+  display:none;
+}
+
+
+/* ================= COURSE DETAIL ================= */
+
+.detail{
+  display:none;
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px 80px;
+}
+
+.detail.active{
+  display:block;
+}
+
+.course-header{
+  background:linear-gradient(145deg,#10243a,#0b1727);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:25px;
+}
+
+.detail-back{
+  border:1px solid rgba(255,255,255,.1);
+  background:#07101d;
+  color:#dce3eb;
+  border-radius:9px;
+  padding:9px 14px;
+  margin-bottom:25px;
+}
+
+.detail-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+.course-header h2{
+  font-size:clamp(27px,4vw,42px);
+  line-height:1.2;
+  margin-bottom:12px;
+}
+
+.course-header p{
+  color:#9eb0c4;
+  max-width:850px;
+}
+
+.detail-stats{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.detail-stat{
+  padding:8px 12px;
+  background:#07101d;
+  border-radius:8px;
+  color:#aebdce;
+  font-size:13px;
+}
+
+
+/* ================= MODULE ================= */
+
+.module{
+  background:#0c1828;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  margin-bottom:14px;
+  overflow:hidden;
+}
+
+.module-header{
+  width:100%;
+  background:none;
+  color:#fff;
+  border:0;
+  padding:19px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  gap:15px;
+}
+
+.module-title{
+  font-weight:800;
+  font-size:16px;
+}
+
+.module-arrow{
+  color:#7dd3fc;
+  font-size:18px;
+}
+
+.module-body{
+  display:none;
+  padding:0 14px 14px;
+}
+
+.module.open .module-body{
+  display:block;
+}
+
+.lesson{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:13px;
+  background:#07101d;
+  border-radius:10px;
+  margin-top:8px;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.lesson-number{
+  min-width:34px;
+  height:34px;
+  border-radius:8px;
+  background:#12263a;
+  color:#7dd3fc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+}
+
+.lesson-info{
+  flex:1;
+}
+
+.lesson-title{
+  font-size:14px;
+  font-weight:700;
+}
+
+.lesson-duration{
+  font-size:11px;
+  color:#7f91a7;
+}
+
+.lesson-btn{
+  padding:7px 11px;
+  border-radius:8px;
+  border:1px solid rgba(125,211,252,.25);
+  background:rgba(56,189,248,.08);
+  color:#7dd3fc;
+  font-size:11px;
+}
+
+
+/* ================= LESSON POPUP ================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:rgba(0,0,0,.78);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  width:min(700px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#0c1828;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:25px;
+  position:relative;
+}
+
+.close-modal{
+  position:absolute;
+  right:17px;
+  top:15px;
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+  background:#16263a;
+  color:#fff;
+  font-size:20px;
+}
+
+.modal-box h3{
+  padding-right:40px;
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.modal-box p{
+  color:#9eb0c4;
+}
+
+.lesson-resources{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.resource-box{
+  padding:15px;
+  background:#07101d;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.resource-box strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+.resource-box span{
+  font-size:12px;
+  color:#7f91a7;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer{
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:30px 20px;
+  text-align:center;
+  color:#72849a;
+  font-size:13px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .course-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:650px){
+
+  .nav{
+    min-height:62px;
+  }
+
+  .brand{
+    font-size:16px;
+  }
+
+  .brand img{
+    width:34px;
+    height:34px;
+  }
+
+  .nav-links{
+    gap:8px;
+  }
+
+  .nav-links a:not(.back-btn){
+    display:none;
+  }
+
+  .hero{
+    padding:45px 18px 30px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .filter-inner{
+    grid-template-columns:1fr;
+  }
+
+  .course-grid{
+    grid-template-columns:1fr;
+  }
+
+  .course-description{
+    min-height:auto;
+  }
+
+  .course-header{
+    padding:22px;
+  }
+
+  .lesson{
+    align-items:flex-start;
+  }
+
+  .lesson-btn{
+    display:none;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
-<nav class="nav">
+  <nav class="nav">
 
-<a href="index.html" class="brand">
-<img src="logo.svg" alt="Maya Shadow Academy">
-<span>MAYA SHADOW<br>ACADEMY</span>
-</a>
+    <a href="index.html" class="brand">
+      <img src="logo.svg" alt="Maya Shadow Academy">
+      <span>Maya Shadow Academy</span>
+    </a>
 
-<div class="nav-links" id="navLinks">
-<a href="index.html">Home</a>
-<a href="courses.html">Courses</a>
-<a href="index.html#recorded">Recorded Classes</a>
-<a href="index.html#resources">Resources</a>
-<a href="index.html#services">Services</a>
-</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html" class="back-btn">← Back Home</a>
+    </div>
 
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-</nav>
+  </nav>
 
 </header>
 
 
-<section class="hero">
+<!-- ================= HERO ================= -->
 
-<div class="badge">🎓 PROFESSIONAL ONLINE ACADEMY</div>
+<section class="hero" id="courses">
 
-<h1>
-Learn. Create.<br>
-<span class="gradient">Master.</span>
-</h1>
+  <div class="hero-badge">
+    🎓 MAYA SHADOW ACADEMY
+  </div>
 
-<p>
-Learn animation, graphic design, audio, video editing,
-AI content creation, storytelling and YouTube production
-through structured professional courses.
-</p>
+  <h1>
+    Learn. Create. <span>Master.</span>
+  </h1>
+
+  <p>
+    Professional courses for animation, graphic design, audio,
+    video editing, AI content creation, storytelling and YouTube.
+  </p>
 
 </section>
 
+
+<!-- ================= STATS ================= -->
 
 <section class="stats">
 
-<div class="stat">
-<strong id="courseCount">0</strong>
-<span>Professional Courses</span>
-</div>
+  <div class="stat">
+    <strong id="totalCourses">0</strong>
+    <span>Professional Courses</span>
+  </div>
 
-<div class="stat">
-<strong id="moduleCount">0</strong>
-<span>Total Modules</span>
-</div>
+  <div class="stat">
+    <strong id="totalModules">0</strong>
+    <span>Total Modules</span>
+  </div>
 
-<div class="stat">
-<strong id="classCount">0</strong>
-<span>Total Classes</span>
-</div>
-
-</section>
-
-
-<section class="container" id="directory">
-
-<div class="section-title">
-
-<span>LEARN WITH US</span>
-
-<h2>Course Directory</h2>
-
-</div>
-
-
-<div class="toolbar">
-
-<input
-id="searchInput"
-class="search"
-type="search"
-placeholder="🔎 Search courses..."
->
-
-<select id="categoryFilter" class="filter">
-<option value="all">All Categories</option>
-<option value="Animation">Animation</option>
-<option value="Graphic Design">Graphic Design</option>
-<option value="Audio & Voice">Audio & Voice</option>
-<option value="Video Editing">Video Editing</option>
-<option value="AI & Content Creation">AI & Content Creation</option>
-<option value="YouTube & Story">YouTube & Story</option>
-</select>
-
-</div>
-
-
-<div id="courseGrid" class="course-grid"></div>
-
-<div id="empty" class="empty">
-No courses found.
-</div>
+  <div class="stat">
+    <strong id="totalLessons">0</strong>
+    <span>Total Classes</span>
+  </div>
 
 </section>
 
 
-<section class="container curriculum" id="curriculum">
+<!-- ================= COURSE DIRECTORY ================= -->
 
-<div class="course-top">
+<main class="container" id="courseDirectory">
 
-<div>
-
-<button class="back-btn" onclick="closeCourse()">
-← Back to All Courses
-</button>
-
-<h2 id="selectedCourseTitle"></h2>
-
-<p id="selectedCourseDescription"></p>
-
-</div>
-
-</div>
+  <div class="section-title">
+    <h2>All Courses</h2>
+    <p>
+      Choose a course and explore the complete module-by-module curriculum.
+    </p>
+  </div>
 
 
-<div class="progress-box">
+  <div class="filter-box" style="padding:0;margin:0 0 25px;">
 
-<div class="progress-head">
-<span>Course Progress</span>
-<strong id="progressText">0%</strong>
-</div>
+    <div class="filter-inner">
 
-<div class="progress-bar">
-<div id="progressFill" class="progress-fill"></div>
-</div>
+      <input
+        type="search"
+        id="searchInput"
+        class="search"
+        placeholder="🔎 Search courses..."
+      >
 
-</div>
+      <select id="categoryFilter" class="category">
 
+        <option value="all">
+          All Categories
+        </option>
 
-<div id="moduleContainer"></div>
+      </select>
 
+    </div>
 
-<div id="lessonPanel" class="lesson-panel">
-
-<div class="lesson-label" id="lessonModule"></div>
-
-<h3 id="lessonTitle"></h3>
-
-<p class="lesson-desc" id="lessonDescription">
-This lesson is ready for your recorded class content.
-</p>
+  </div>
 
 
-<div class="video-box">
+  <div id="courseGrid" class="course-grid"></div>
 
-<div>
-<div class="play">▶</div>
-<p style="margin-top:12px;color:#9da8bf;">
-Course Video
-</p>
-</div>
+  <div id="emptyState" class="empty">
+    <h3>No course found</h3>
+    <p>Try another course name or category.</p>
+  </div>
 
-</div>
+</main>
 
 
-<div class="resources">
+<!-- ================= COURSE DETAIL ================= -->
 
-<div class="resource">
-<strong>📄 Notes / PDF</strong>
-<span>Lesson notes will appear here.</span>
-</div>
+<section id="courseDetail" class="detail">
 
-<div class="resource">
-<strong>📦 Project Files</strong>
-<span>Downloadable project resources.</span>
-</div>
+  <button class="detail-back" onclick="showDirectory()">
+    ← Back to All Courses
+  </button>
 
-<div class="resource">
-<strong>📝 Assignment</strong>
-<span>Practice assignment for this lesson.</span>
-</div>
+  <div id="courseHeader"></div>
 
-</div>
-
-
-<div class="lesson-actions">
-
-<button onclick="previousLesson()">
-← Previous
-</button>
-
-<button class="complete" onclick="completeLesson()">
-✓ Mark Complete
-</button>
-
-<button onclick="nextLesson()">
-Next →
-</button>
-
-</div>
-
-</div>
+  <div id="moduleList"></div>
 
 </section>
 
+
+<!-- ================= LESSON MODAL ================= -->
+
+<div class="modal" id="lessonModal">
+
+  <div class="modal-box">
+
+    <button class="close-modal" onclick="closeLesson()">
+      ×
+    </button>
+
+    <h3 id="modalTitle">
+      Lesson
+    </h3>
+
+    <p id="modalDescription">
+      Lesson information will appear here.
+    </p>
+
+    <div class="lesson-resources">
+
+      <div class="resource-box">
+        <strong>🎥 Video Lesson</strong>
+        <span id="videoStatus">
+          Video will be added when the lesson is published.
+        </span>
+      </div>
+
+      <div class="resource-box">
+        <strong>📄 Notes / PDF</strong>
+        <span id="notesStatus">
+          Notes will be available here.
+        </span>
+      </div>
+
+      <div class="resource-box">
+        <strong>📦 Project Files / Resources</strong>
+        <span id="resourceStatus">
+          Project resources will be added here.
+        </span>
+      </div>
+
+      <div class="resource-box">
+        <strong>📝 Assignment</strong>
+        <span id="assignmentStatus">
+          Assignment will be added here.
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  © <span id="year"></span> Maya Shadow Academy.
+  All rights reserved.
+
+</footer>
+
+
+<!-- =====================================================
+     IMPORTANT:
+     COURSE DATABASE MUST LOAD BEFORE PAGE SCRIPT
+     ===================================================== -->
 
 <script src="course-data.js"></script>
 
+
 <script>
 
-let currentCourse=null;
-let currentLessons=[];
-let currentIndex=0;
-
-const courseGrid=document.getElementById("courseGrid");
-const moduleContainer=document.getElementById("moduleContainer");
-
-function toggleMenu(){
-
-document.getElementById("navLinks")
-.classList.toggle("show");
-
-}
+/* =====================================================
+   MAYA SHADOW ACADEMY COURSE SYSTEM
+   ===================================================== */
 
 
-function totalModules(){
+/* ---------- DATABASE CHECK ---------- */
 
-return courses.reduce(
-(total,c)=>total+c.modules.length,0
-);
+const academy = window.MayaShadowAcademy;
 
-}
+if(!academy || !academy.courses){
 
+  document.getElementById("courseGrid").innerHTML = `
+    <div style="
+      grid-column:1/-1;
+      padding:30px;
+      background:#251313;
+      border:1px solid #6b3030;
+      border-radius:15px;
+      color:#ffb4b4;
+    ">
+      <h3>Course database could not be loaded.</h3>
+      <p>
+        Please make sure <b>course-data.js</b> exists in the
+        same GitHub folder as courses.html.
+      </p>
+    </div>
+  `;
 
-function totalClasses(){
-
-return courses.reduce(
-(total,c)=>
-total+
-c.modules.reduce(
-(t,m)=>t+m.classes.length,0
-),0
-);
+  throw new Error("course-data.js not loaded");
 
 }
 
+
+/* ---------- GLOBAL DATA ---------- */
+
+const courses = academy.courses;
+
+const courseGrid =
+  document.getElementById("courseGrid");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const categoryFilter =
+  document.getElementById("categoryFilter");
+
+const emptyState =
+  document.getElementById("emptyState");
+
+
+/* =====================================================
+   STATS
+   ===================================================== */
 
 function updateStats(){
 
-document.getElementById("courseCount").textContent=
-courses.length;
+  let modules = 0;
+  let lessons = 0;
 
-document.getElementById("moduleCount").textContent=
-totalModules();
+  courses.forEach(course => {
 
-document.getElementById("classCount").textContent=
-totalClasses();
+    modules += course.modules.length;
+
+    course.modules.forEach(module => {
+
+      lessons += module.classes.length;
+
+    });
+
+  });
+
+  document.getElementById("totalCourses").textContent =
+    courses.length;
+
+  document.getElementById("totalModules").textContent =
+    modules;
+
+  document.getElementById("totalLessons").textContent =
+    lessons;
 
 }
 
+
+/* =====================================================
+   CATEGORY FILTER
+   ===================================================== */
+
+function loadCategories(){
+
+  const categories = [];
+
+  courses.forEach(course => {
+
+    if(!categories.includes(course.category)){
+
+      categories.push(course.category);
+
+    }
+
+  });
+
+  categories.sort();
+
+  categories.forEach(category => {
+
+    const option = document.createElement("option");
+
+    option.value = category;
+    option.textContent = category;
+
+    categoryFilter.appendChild(option);
+
+  });
+
+}
+
+
+/* =====================================================
+   COURSE CARD
+   ===================================================== */
+
+function createCourseCard(course){
+
+  let lessonCount = 0;
+
+  course.modules.forEach(module => {
+
+    lessonCount += module.classes.length;
+
+  });
+
+
+  const card = document.createElement("article");
+
+  card.className = "course-card";
+
+  card.innerHTML = `
+
+    <div class="course-top">
+
+      <div class="course-icon">
+        ${course.icon || "🎓"}
+      </div>
+
+      <div class="course-category">
+        ${course.category}
+      </div>
+
+      <h3>
+        ${course.title}
+      </h3>
+
+      <p class="course-description">
+        ${course.description}
+      </p>
+
+      <div class="course-meta">
+
+        <span class="meta">
+          📚 ${course.modules.length} Modules
+        </span>
+
+        <span class="meta">
+          🎥 ${lessonCount} Classes
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="course-bottom">
+
+      <button class="view-course">
+        Explore Course →
+      </button>
+
+    </div>
+
+  `;
+
+
+  card
+    .querySelector(".view-course")
+    .addEventListener("click", function(){
+
+      openCourse(course.id);
+
+    });
+
+
+  return card;
+
+}
+
+
+/* =====================================================
+   RENDER COURSES
+   ===================================================== */
 
 function renderCourses(){
 
-const search=
-document.getElementById("searchInput")
-.value.toLowerCase();
+  const search =
+    searchInput.value.trim().toLowerCase();
 
-const category=
-document.getElementById("categoryFilter")
-.value;
+  const category =
+    categoryFilter.value;
 
-courseGrid.innerHTML="";
+  courseGrid.innerHTML = "";
 
-let visible=0;
+  let visibleCourses = courses.filter(course => {
 
-courses.forEach((course,index)=>{
+    const matchesSearch =
+      course.title.toLowerCase().includes(search) ||
+      course.category.toLowerCase().includes(search) ||
+      course.description.toLowerCase().includes(search);
 
-const matchesSearch=
-course.title.toLowerCase().includes(search) ||
-course.description.toLowerCase().includes(search);
+    const matchesCategory =
+      category === "all" ||
+      course.category === category;
 
-const matchesCategory=
-category==="all" ||
-course.category===category;
+    return matchesSearch && matchesCategory;
 
-if(!matchesSearch || !matchesCategory) return;
+  });
 
-visible++;
 
-const classes=course.modules.reduce(
-(t,m)=>t+m.classes.length,0
+  visibleCourses.forEach(course => {
+
+    courseGrid.appendChild(
+      createCourseCard(course)
+    );
+
+  });
+
+
+  if(visibleCourses.length === 0){
+
+    emptyState.style.display = "block";
+
+  }else{
+
+    emptyState.style.display = "none";
+
+  }
+
+}
+
+
+/* =====================================================
+   OPEN COURSE
+   ===================================================== */
+
+function openCourse(courseId){
+
+  const course =
+    academy.getCourse(courseId);
+
+  if(!course) return;
+
+
+  document.getElementById("courseDirectory")
+    .style.display = "none";
+
+  document.querySelector(".stats")
+    .style.display = "none";
+
+  document.querySelector(".hero")
+    .style.display = "none";
+
+  const detail =
+    document.getElementById("courseDetail");
+
+  detail.classList.add("active");
+
+
+  let totalLessons = 0;
+
+  course.modules.forEach(module => {
+
+    totalLessons += module.classes.length;
+
+  });
+
+
+  document.getElementById("courseHeader").innerHTML = `
+
+    <div class="course-header">
+
+      <div class="detail-icon">
+        ${course.icon || "🎓"}
+      </div>
+
+      <div class="course-category">
+        ${course.category}
+      </div>
+
+      <h2>
+        ${course.title}
+      </h2>
+
+      <p>
+        ${course.description}
+      </p>
+
+      <div class="detail-stats">
+
+        <span class="detail-stat">
+          📚 ${course.modules.length} Modules
+        </span>
+
+        <span class="detail-stat">
+          🎓 ${totalLessons} Classes
+        </span>
+
+        <span class="detail-stat">
+          📂 Complete Curriculum
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  const moduleList =
+    document.getElementById("moduleList");
+
+  moduleList.innerHTML = "";
+
+
+  course.modules.forEach((module,index) => {
+
+    const moduleBox =
+      document.createElement("div");
+
+    moduleBox.className = "module";
+
+    moduleBox.innerHTML = `
+
+      <button class="module-header">
+
+        <span class="module-title">
+          ${module.title}
+        </span>
+
+        <span class="module-arrow">
+          +
+        </span>
+
+      </button>
+
+      <div class="module-body"></div>
+
+    `;
+
+
+    const moduleBody =
+      moduleBox.querySelector(".module-body");
+
+
+    module.classes.forEach(lesson => {
+
+      const lessonRow =
+        document.createElement("div");
+
+      lessonRow.className = "lesson";
+
+      lessonRow.innerHTML = `
+
+        <div class="lesson-number">
+          ${lesson.id}
+        </div>
+
+        <div class="lesson-info">
+
+          <div class="lesson-title">
+            ${lesson.title}
+          </div>
+
+          <div class="lesson-duration">
+            ⏱ ${lesson.duration}
+          </div>
+
+        </div>
+
+        <button class="lesson-btn">
+          View
+        </button>
+
+      `;
+
+
+      lessonRow
+        .querySelector(".lesson-btn")
+        .addEventListener("click", function(event){
+
+          event.stopPropagation();
+
+          openLesson(
+            course,
+            lesson
+          );
+
+        });
+
+
+      moduleBody.appendChild(lessonRow);
+
+    });
+
+
+    moduleBox
+      .querySelector(".module-header")
+      .addEventListener("click", function(){
+
+        moduleBox.classList.toggle("open");
+
+        const arrow =
+          moduleBox.querySelector(".module-arrow");
+
+        arrow.textContent =
+          moduleBox.classList.contains("open")
+          ? "−"
+          : "+";
+
+      });
+
+
+    moduleList.appendChild(moduleBox);
+
+  });
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   LESSON WINDOW
+   ===================================================== */
+
+function openLesson(course,lesson){
+
+  document.getElementById("modalTitle")
+    .textContent =
+      lesson.id + " — " + lesson.title;
+
+
+  document.getElementById("modalDescription")
+    .textContent =
+      course.title +
+      " • " +
+      lesson.duration;
+
+
+  document.getElementById("videoStatus")
+    .textContent =
+      lesson.video
+      ? "Video lesson is available."
+      : "Video will be added when the lesson is published.";
+
+
+  document.getElementById("notesStatus")
+    .textContent =
+      lesson.notes
+      ? "Notes / PDF available."
+      : "Notes will be available here.";
+
+
+  document.getElementById("resourceStatus")
+    .textContent =
+      lesson.resources
+      ? "Project files are available."
+      : "Project resources will be added here.";
+
+
+  document.getElementById("assignmentStatus")
+    .textContent =
+      lesson.assignment
+      ? "Assignment available."
+      : "Assignment will be added here.";
+
+
+  document
+    .getElementById("lessonModal")
+    .classList.add("active");
+
+}
+
+
+function closeLesson(){
+
+  document
+    .getElementById("lessonModal")
+    .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   BACK TO COURSE DIRECTORY
+   ===================================================== */
+
+function showDirectory(){
+
+  document.getElementById("courseDetail")
+    .classList.remove("active");
+
+  document.getElementById("courseDirectory")
+    .style.display = "block";
+
+  document.querySelector(".stats")
+    .style.display = "grid";
+
+  document.querySelector(".hero")
+    .style.display = "block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+searchInput.addEventListener(
+  "input",
+  renderCourses
 );
 
-const card=document.createElement("article");
 
-card.className="course-card";
-
-card.innerHTML=`
-
-<div class="course-icon">${course.icon}</div>
-
-<h3>${course.title}</h3>
-
-<p>${course.description}</p>
-
-<div class="course-meta">
-
-<span>${course.category}</span>
-
-<span>${course.modules.length} Modules</span>
-
-<span>${classes} Classes</span>
-
-</div>
-
-<button class="view-btn"
-onclick="openCourse(${index})">
-View Course →
-</button>
-
-`;
-
-courseGrid.appendChild(card);
-
-});
-
-document.getElementById("empty").style.display=
-visible ? "none" : "block";
-
-}
-
-
-function openCourse(index){
-
-currentCourse=courses[index];
-
-currentLessons=[];
-
-currentIndex=0;
-
-courses[index].modules.forEach(module=>{
-
-module.classes.forEach(cls=>{
-
-currentLessons.push({
-module:module.title,
-id:cls.id,
-title:cls.title,
-duration:cls.duration
-});
-
-});
-
-});
-
-document.getElementById("directory")
-.style.display="none";
-
-document.getElementById("curriculum")
-.classList.add("active");
-
-document.getElementById("selectedCourseTitle")
-.textContent=currentCourse.title;
-
-document.getElementById("selectedCourseDescription")
-.textContent=currentCourse.description;
-
-renderModules();
-
-updateProgress();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-function closeCourse(){
-
-document.getElementById("curriculum")
-.classList.remove("active");
-
-document.getElementById("directory")
-.style.display="block";
-
-document.getElementById("lessonPanel")
-.classList.remove("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-function renderModules(){
-
-moduleContainer.innerHTML="";
-
-currentCourse.modules.forEach((module,mIndex)=>{
-
-const box=document.createElement("div");
-
-box.className="module";
-
-const header=document.createElement("button");
-
-header.className="module-header";
-
-header.innerHTML=`
-
-<span class="module-title">
-${module.title}
-</span>
-
-<span class="module-count">
-${module.classes.length} Classes ▾
-</span>
-
-`;
-
-header.onclick=()=>{
-box.classList.toggle("open");
-};
-
-box.appendChild(header);
-
-const list=document.createElement("div");
-
-list.className="class-list";
-
-module.classes.forEach(cls=>{
-
-const item=document.createElement("div");
-
-item.className="class-item";
-
-item.innerHTML=`
-
-<div class="class-number">
-${cls.id}
-</div>
-
-<div class="class-info">
-
-<strong>${cls.title}</strong>
-
-<small>⏱ ${cls.duration}</small>
-
-</div>
-
-<button class="class-open">
-Open
-</button>
-
-`;
-
-item.querySelector(".class-open")
-.onclick=()=>{
-
-const globalIndex=
-currentLessons.findIndex(
-(x)=>x.id===cls.id
+categoryFilter.addEventListener(
+  "change",
+  renderCourses
 );
 
-openLesson(globalIndex);
 
-};
+/* =====================================================
+   MODAL CLICK OUTSIDE
+   ===================================================== */
 
-list.appendChild(item);
+document.getElementById("lessonModal")
+  .addEventListener("click", function(event){
 
-});
+    if(event.target === this){
 
-box.appendChild(list);
+      closeLesson();
 
-moduleContainer.appendChild(box);
+    }
 
-});
-
-}
-
-
-function openLesson(index){
-
-if(index<0 || index>=currentLessons.length)
-return;
-
-currentIndex=index;
-
-const lesson=currentLessons[index];
-
-document.getElementById("lessonModule")
-.textContent=lesson.module;
-
-document.getElementById("lessonTitle")
-.textContent=
-"Class "+lesson.id+" — "+lesson.title;
-
-document.getElementById("lessonPanel")
-.classList.add("active");
-
-updateProgress();
-
-setTimeout(()=>{
-
-document.getElementById("lessonPanel")
-.scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
-},100);
-
-}
+  });
 
 
-function completeLesson(){
+/* =====================================================
+   ESC KEY
+   ===================================================== */
 
-const lesson=currentLessons[currentIndex];
+document.addEventListener("keydown", function(event){
 
-localStorage.setItem(
-"maya_completed_"+currentCourse.id+"_"+lesson.id,
-"yes"
-);
+  if(event.key === "Escape"){
 
-updateProgress();
+    closeLesson();
 
-alert("Class marked as complete ✓");
-
-}
-
-
-function isCompleted(lesson){
-
-return localStorage.getItem(
-"maya_completed_"+
-currentCourse.id+
-"_"+lesson.id
-)==="yes";
-
-}
-
-
-function updateProgress(){
-
-if(!currentCourse || !currentLessons.length)
-return;
-
-let completed=0;
-
-currentLessons.forEach(lesson=>{
-
-if(isCompleted(lesson))
-completed++;
+  }
 
 });
 
-const percent=
-Math.round(
-(completed/currentLessons.length)*100
-);
 
-document.getElementById("progressText")
-.textContent=percent+"%";
+/* =====================================================
+   INITIALIZE
+   ===================================================== */
 
-document.getElementById("progressFill")
-.style.width=percent+"%";
-
-}
-
-
-function previousLesson(){
-
-if(currentIndex>0){
-
-openLesson(currentIndex-1);
-
-}
-
-}
-
-
-function nextLesson(){
-
-if(currentIndex<
-currentLessons.length-1){
-
-openLesson(currentIndex+1);
-
-}
-
-}
-
-
-document.getElementById("searchInput")
-.addEventListener(
-"input",
-renderCourses
-);
-
-document.getElementById("categoryFilter")
-.addEventListener(
-"change",
-renderCourses
-);
-
+document.getElementById("year")
+  .textContent = new Date().getFullYear();
 
 updateStats();
 
+loadCategories();
+
 renderCourses();
+
+
+/* =====================================================
+   OPTIONAL URL COURSE SUPPORT
+
+   Example:
+   courses.html?course=cartoon-animator-5
+   ===================================================== */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const requestedCourse =
+  params.get("course");
+
+if(requestedCourse){
+
+  if(academy.getCourse(requestedCourse)){
+
+    openCourse(requestedCourse);
+
+  }
+
+}
 
 </script>
 
