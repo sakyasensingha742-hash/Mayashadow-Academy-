@@ -34,3 +34,139 @@
     font-size: 25px;
   }
 }
+/* ================================
+   PROFESSIONAL NAVIGATION FIX
+================================ */
+
+header.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 0 6%;
+  background: rgba(7, 11, 24, 0.96);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-sizing: border-box;
+}
+
+header.nav .brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+header.nav .brand img {
+  height: 54px;
+  width: auto;
+  display: block;
+}
+
+header.nav .menu {
+  display: none;
+}
+
+/* Main navigation */
+body > nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 6%;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+body > nav a {
+  color: #e8edf7;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+body > nav a:hover {
+  color: #55dfff;
+}
+
+/* Buy button */
+body > nav a.buy-btn,
+body > nav a[href="#buy"] {
+  padding: 11px 22px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  color: #06101c;
+  font-weight: 700;
+}
+
+/* Prevent horizontal scrolling */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Give page space below fixed navigation */
+main {
+  padding-top: 76px;
+}
+
+/* Mobile navigation */
+@media (max-width: 800px) {
+
+  header.nav {
+    height: 64px;
+    padding: 0 18px;
+  }
+
+  header.nav .brand img {
+    height: 46px;
+  }
+
+  body > nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 18px 18px;
+    background: #080d1c;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  body > nav a {
+    padding: 12px 8px;
+  }
+
+  main {
+    padding-top: 64px;
+  }
+}
+/* ================================
+   WHATSAPP CLICK FIX
+================================ */
+
+.whatsapp-float {
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.whatsapp-float a,
+a.whatsapp-float {
+  pointer-events: auto;
+  cursor: pointer;
+}
