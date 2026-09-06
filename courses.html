@@ -1609,7 +1609,56 @@ function openCourse(courseId){
    LESSON WINDOW
    ===================================================== */
 
-function openLesson(course,lesson){
+function openLesson(course, lesson){
+
+  currentCourse = course;
+  currentLesson = lesson;
+
+  document.getElementById("modalLessonNumber")
+    .textContent = lesson.id;
+
+  document.getElementById("modalTitle")
+    .textContent =
+      lesson.id + " — " + lesson.title;
+
+  document.getElementById("modalDescription")
+    .textContent =
+      course.title +
+      " • " +
+      lesson.duration;
+
+  document.getElementById("videoStatus")
+    .textContent =
+      lesson.video
+      ? "Video lesson is available."
+      : "Video will be added when the lesson is published.";
+
+  document.getElementById("notesStatus")
+    .textContent =
+      lesson.notes
+      ? "Notes / PDF available."
+      : "Notes will be available here.";
+
+  document.getElementById("resourceStatus")
+    .textContent =
+      lesson.resources
+      ? "Project files are available."
+      : "Project resources will be added here.";
+
+  document.getElementById("assignmentStatus")
+    .textContent =
+      lesson.assignment
+      ? "Assignment available."
+      : "Assignment will be added here.";
+
+  updateLessonProgress();
+
+  updateLessonNavigation();
+
+  document
+    .getElementById("lessonModal")
+    .classList.add("active");
+}
 
   document.getElementById("modalTitle")
     .textContent =
