@@ -1538,7 +1538,132 @@ document.getElementById(
 
         event.preventDefault();
 
-        products++;
+        const form =
+            document.getElementById(
+                "productForm"
+            );
+
+        const product = {};
+
+        /* Basic product information */
+
+        product.name =
+            document.getElementById(
+                "productName"
+            )?.value || "";
+
+        product.type =
+            document.getElementById(
+                "productType"
+            )?.value || "";
+
+        product.category =
+            form.querySelector(
+                '[name="category"]'
+            )?.value || "";
+
+        product.price =
+            document.getElementById(
+                "price"
+            )?.value || "";
+
+        product.originalPrice =
+            document.getElementById(
+                "originalPrice"
+            )?.value || "";
+
+        product.description =
+            document.getElementById(
+                "description"
+            )?.value || "";
+
+        /* Selected character views */
+
+        product.views =
+            Array.from(
+                form.querySelectorAll(
+                    'input[type="checkbox"]:checked'
+                )
+            ).map(function(item){
+
+                return item.value ||
+                       item.parentElement.textContent.trim();
+
+            });
+
+        /* Selected file formats */
+
+        product.formats =
+            Array.from(
+                form.querySelectorAll(
+                    'input[type="checkbox"]:checked'
+                )
+            ).map(function(item){
+
+                return item.value ||
+                       item.parentElement.textContent.trim();
+
+            });
+
+        /* Uploaded file names */
+
+        product.files = [];
+
+        form.querySelectorAll(
+            'input[type="file"]'
+        ).forEach(function(input){
+
+            Array.from(
+                input.files || []
+            ).forEach(function(file){
+
+                product.files.push(
+                    file.name
+                );
+
+            });
+
+        });
+
+        /* Save time */
+
+        product.savedAt =
+            new Date().toISOString();
+
+        /* Existing saved products */
+
+        let savedProducts = [];
+
+        try{
+
+            savedProducts =
+                JSON.parse(
+                    localStorage.getItem(
+                        "maya_admin_products"
+                    )
+                ) || [];
+
+        }catch(error){
+
+            savedProducts = [];
+
+        }
+
+        /* Add new product */
+
+        savedProducts.push(product);
+
+        localStorage.setItem(
+            "maya_admin_products",
+            JSON.stringify(
+                savedProducts
+            )
+        );
+
+        /* Update product count */
+
+        products =
+            savedProducts.length;
 
         localStorage.setItem(
             "maya_admin_product_count",
@@ -1551,7 +1676,7 @@ document.getElementById(
             products;
 
         alert(
-            "Product draft saved locally."
+            "Product draft saved successfully."
         );
 
     }
