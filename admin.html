@@ -1227,49 +1227,299 @@ document.getElementById(
 function previewProduct(){
 
     const name =
-        document.getElementById(
-            "productName"
-        ).value || "Untitled Product";
+        document.getElementById("productName").value ||
+        "Untitled Product";
 
     const type =
-        document.getElementById(
-            "productType"
-        ).value;
+        document.getElementById("productType").value ||
+        "asset";
 
     const price =
-        document.getElementById(
-            "price"
-        ).value || "0";
+        document.getElementById("price").value ||
+        "0";
+
+    const originalPriceElement =
+        document.getElementById("originalPrice");
+
+    const originalPrice =
+        originalPriceElement ?
+        originalPriceElement.value :
+        "";
 
     const panel =
-        document.getElementById(
-            "previewPanel"
-        );
+        document.getElementById("previewPanel");
 
     const text =
-        document.getElementById(
-            "previewText"
+        document.getElementById("previewText");
+
+    /* Product Preview Image */
+
+    const fileInputs =
+        document.querySelectorAll(
+            '#productForm input[type="file"]'
         );
+
+    const previewInput =
+        fileInputs[0];
+
+    let imageHTML = "";
+
+    if(
+        previewInput &&
+        previewInput.files &&
+        previewInput.files[0]
+    ){
+
+        const file =
+            previewInput.files[0];
+
+        const imageURL =
+            URL.createObjectURL(file);
+
+        imageHTML =
+            '<div style="' +
+            'margin-bottom:24px;' +
+            'background:#071426;' +
+            'border:1px solid #243b5a;' +
+            'border-radius:18px;' +
+            'padding:14px;' +
+            'text-align:center;' +
+            '">' +
+
+            '<img src="' +
+            imageURL +
+            '" ' +
+            'alt="' +
+            name +
+            '" ' +
+            'style="' +
+            'width:100%;' +
+            'max-height:420px;' +
+            'object-fit:contain;' +
+            'border-radius:14px;' +
+            'display:block;' +
+            '">' +
+
+            '</div>';
+
+    }else{
+
+        imageHTML =
+            '<div style="' +
+            'padding:50px 20px;' +
+            'margin-bottom:24px;' +
+            'background:#071426;' +
+            'border:1px dashed #315277;' +
+            'border-radius:18px;' +
+            'text-align:center;' +
+            'color:#8fa8c5;' +
+            '">' +
+
+            '🖼️ Product preview image will appear here' +
+
+            '</div>';
+
+    }
+
+    /* Selected options */
+
+    const checkedBoxes =
+        document.querySelectorAll(
+            '#productForm input[type="checkbox"]:checked'
+        );
+
+    const options = [];
+
+    checkedBoxes.forEach(function(box){
+
+        const label =
+            box.closest("label");
+
+        if(label){
+
+            const value =
+                label.innerText.trim();
+
+            if(value){
+                options.push(value);
+            }
+
+        }
+
+    });
+
+    let optionHTML = "";
+
+    if(options.length){
+
+        optionHTML =
+            '<div style="' +
+            'display:flex;' +
+            'flex-wrap:wrap;' +
+            'gap:8px;' +
+            'margin-top:18px;' +
+            '">' +
+
+            options.map(function(option){
+
+                return (
+                    '<span style="' +
+                    'background:#10243d;' +
+                    'border:1px solid #27476b;' +
+                    'padding:7px 11px;' +
+                    'border-radius:999px;' +
+                    'font-size:13px;' +
+                    'color:#b9d8f7;' +
+                    '">' +
+                    option +
+                    '</span>'
+                );
+
+            }).join("") +
+
+            '</div>';
+
+    }
+
+    /* Price */
+
+    let priceHTML =
+        '<div style="' +
+        'margin-top:20px;' +
+        'display:flex;' +
+        'align-items:center;' +
+        'gap:12px;' +
+        'flex-wrap:wrap;' +
+        '">' +
+
+        '<strong style="' +
+        'font-size:28px;' +
+        'color:#ffffff;' +
+        '">' +
+
+        '₹' +
+        price +
+
+        '</strong>';
+
+    if(originalPrice){
+
+        priceHTML +=
+            '<span style="' +
+            'font-size:16px;' +
+            'color:#7188a3;' +
+            'text-decoration:line-through;' +
+            '">' +
+
+            '₹' +
+            originalPrice +
+
+            '</span>';
+
+    }
+
+    priceHTML +=
+        '</div>';
+
+    /* Final Product Preview */
 
     panel.style.display =
         "block";
 
     text.innerHTML =
-        "<strong>" +
-        name +
-        "</strong><br><br>" +
 
-        "Type: " +
+        '<div style="' +
+        'max-width:900px;' +
+        'margin:0 auto;' +
+        '">' +
+
+        imageHTML +
+
+        '<div style="' +
+        'background:linear-gradient(135deg,#0d1f35,#101c32);' +
+        'border:1px solid #263f60;' +
+        'border-radius:18px;' +
+        'padding:24px;' +
+        '">' +
+
+        '<div style="' +
+        'font-size:12px;' +
+        'font-weight:700;' +
+        'letter-spacing:1.5px;' +
+        'color:#31b8ff;' +
+        'text-transform:uppercase;' +
+        'margin-bottom:8px;' +
+        '">' +
+
         type +
-        "<br>" +
 
-        "Price: ₹" +
-        price +
-        "<br><br>" +
+        '</div>' +
 
-        "Product structure ready for " +
-        "PNG, PSD, AI, Adobe Animate CC " +
-        "and Cartoon Animator 5.";
+        '<h3 style="' +
+        'font-size:28px;' +
+        'margin:0 0 10px;' +
+        'color:#ffffff;' +
+        '">' +
+
+        name +
+
+        '</h3>' +
+
+        '<div style="' +
+        'color:#91acd0;' +
+        'font-size:15px;' +
+        '">' +
+
+        'Professional digital asset for animation and creative production.' +
+
+        '</div>' +
+
+        priceHTML +
+
+        optionHTML +
+
+        '<div style="' +
+        'margin-top:24px;' +
+        'padding-top:20px;' +
+        'border-top:1px solid #263f60;' +
+        'display:flex;' +
+        'justify-content:space-between;' +
+        'align-items:center;' +
+        'gap:16px;' +
+        'flex-wrap:wrap;' +
+        '">' +
+
+        '<div style="' +
+        'color:#9db5d2;' +
+        'font-size:14px;' +
+        '">' +
+
+        '✓ Digital download<br>' +
+        '✓ Professional quality<br>' +
+        '✓ Ready for animation workflow' +
+
+        '</div>' +
+
+        '<button type="button" style="' +
+        'background:linear-gradient(135deg,#24b5f5,#5369f2);' +
+        'border:0;' +
+        'color:#ffffff;' +
+        'padding:13px 24px;' +
+        'border-radius:10px;' +
+        'font-weight:700;' +
+        'font-size:15px;' +
+        'cursor:pointer;' +
+        '">' +
+
+        '🛒 Buy Now' +
+
+        '</button>' +
+
+        '</div>' +
+
+        '</div>' +
+
+        '</div>';
 
     panel.scrollIntoView({
         behavior:"smooth"
