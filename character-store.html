@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Character Store | Maya Shadow Academy</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #06101f;
+
+    color:#f4f7ff;
+
+    min-height:100vh;
+
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+
+}
+
+/* NAVIGATION */
+
+.navbar{
+
+    height:68px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        #081323;
+
+    display:flex;
+    align-items:center;
+
+}
+
+.nav-inner{
+
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+}
+
+.logo{
+
+    font-size:24px;
+    font-weight:800;
+
+}
+
+.logo span{
+    color:#35bdf5;
+}
+
+.nav-links{
+
+    display:flex;
+    gap:28px;
+    align-items:center;
+
+}
+
+.nav-links a{
+
+    color:#cbd8eb;
+    font-size:15px;
+
+}
+
+.nav-links a:hover{
+    color:#35bdf5;
+}
+
+.back-btn{
+
+    padding:11px 17px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius:10px;
+
+    background:#111f33;
+
+}
+
+/* HERO */
+
+.hero{
+
+    padding:
+        70px 0 45px;
+
+    text-align:center;
+
+}
+
+.hero-label{
+
+    color:#35bdf5;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    margin-bottom:14px;
+
+}
+
+.hero h1{
+
+    font-size:
+        clamp(34px,5vw,56px);
+
+    margin-bottom:18px;
+
+}
+
+.hero p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:#9db1ca;
+
+    line-height:1.7;
+
+    font-size:17px;
+
+}
+
+/* FORMAT FILTER */
+
+.format-section{
+
+    margin-bottom:45px;
+
+}
+
+.section-title{
+
+    font-size:28px;
+
+    margin-bottom:18px;
+
+}
+
+.format-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:14px;
+
+}
+
+.format-card{
+
+    background:#0d1b2d;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:14px;
+
+    padding:22px 14px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.format-card:hover{
+
+    transform:
+        translateY(-3px);
+
+    border-color:#35bdf5;
+
+}
+
+.format-icon{
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+.format-card strong{
+
+    display:block;
+
+    font-size:14px;
+
+}
+
+.format-card small{
+
+    color:#8095b0;
+
+    display:block;
+
+    margin-top:6px;
+
+}
+
+/* VIEW SECTION */
+
+.views-section{
+
+    margin-bottom:50px;
+
+}
+
+.views{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.view-tag{
+
+    padding:
+        9px 15px;
+
+    border-radius:30px;
+
+    background:#101f34;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    color:#c8d6e8;
+
+    font-size:14px;
+
+}
+
+/* PRODUCTS */
+
+.store-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:22px;
+
+}
+
+.store-header p{
+
+    color:#8197b2;
+
+    margin-top:7px;
+
+}
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+
+    padding-bottom:80px;
+
+}
+
+.product-card{
+
+    background:#0d1b2d;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:17px;
+
+    overflow:hidden;
+
+    transition:.25s;
+
+}
+
+.product-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:#35bdf5;
+
+}
+
+.product-preview{
+
+    height:230px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172c49,
+            #0b1729
+        );
+
+    font-size:70px;
+
+}
+
+.product-info{
+
+    padding:22px;
+
+}
+
+.category{
+
+    color:#35bdf5;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+.product-info h3{
+
+    font-size:20px;
+
+    margin:
+        9px 0 10px;
+
+}
+
+.description{
+
+    color:#91a6bf;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+.views-count{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin:
+        16px 0;
+
+}
+
+.views-count span{
+
+    background:#071321;
+
+    padding:
+        6px 9px;
+
+    border-radius:7px;
+
+    font-size:11px;
+
+    color:#b9c9db;
+
+}
+
+.price-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:18px;
+
+}
+
+.price{
+
+    font-size:24px;
+
+    font-weight:800;
+
+}
+
+.details-btn{
+
+    padding:
+        11px 15px;
+
+    border-radius:9px;
+
+    background:#35bdf5;
+
+    color:#04101c;
+
+    font-weight:800;
+
+}
+
+/* EMPTY / FUTURE */
+
+.coming-soon{
+
+    margin-bottom:70px;
+
+    padding:28px;
+
+    border-radius:16px;
+
+    background:#0b182a;
+
+    border:
+        1px dashed rgba(53,189,245,.35);
+
+    text-align:center;
+
+}
+
+.coming-soon h3{
+
+    margin-bottom:8px;
+
+}
+
+.coming-soon p{
+
+    color:#8399b4;
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .format-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .product-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+    .product-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .format-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero{
+
+        padding-top:45px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a
+            href="index.html"
+            class="logo">
+            Maya Shadow <span>Academy</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="courses.html">
+                Courses
+            </a>
+
+            <a href="character-store.html">
+                Character Store
+            </a>
+
+            <a
+                href="index.html"
+                class="back-btn">
+                ← Back Home
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-label">
+            MAYA SHADOW ASSET STORE
+        </div>
+
+        <h1>
+            Character Store
+        </h1>
+
+        <p>
+            Professional animation-ready characters
+            for 2.5D animation, Cartoon Animator 5,
+            Adobe Animate CC, Photoshop and Illustrator.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FORMAT SECTION -->
+
+<section class="format-section">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Browse by Format
+        </h2>
+
+        <div class="format-grid">
+
+            <div class="format-card">
+
+                <div class="format-icon">
+                    🖼️
+                </div>
+
+                <strong>
+                    PNG Characters
+                </strong>
+
+                <small>
+                    Transparent PNG
+                </small>
+
+            </div>
+
+
+            <div class="format-card">
+
+                <div class="format-icon">
+                    🎨
+                </div>
+
+                <strong>
+                    Photoshop PSD
+                </strong>
+
+                <small>
+                    Layered Files
+                </small>
+
+            </div>
+
+
+            <div class="format-card">
+
+                <div class="format-icon">
+                    ✏️
+                </div>
+
+                <strong>
+                    Adobe Illustrator
+                </strong>
+
+                <small>
+                    AI Files
+                </small>
+
+            </div>
+
+
+            <div class="format-card">
+
+                <div class="format-icon">
+                    🎬
+                </div>
+
+                <strong>
+                    Adobe Animate CC
+                </strong>
+
+                <small>
+                    FLA Files
+                </small>
+
+            </div>
+
+
+            <div class="format-card">
+
+                <div class="format-icon">
+                    🎭
+                </div>
+
+                <strong>
+                    Cartoon Animator 5
+                </strong>
+
+                <small>
+                    Animation Ready
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHARACTER VIEWS -->
+
+<section class="views-section">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Character Views
+        </h2>
+
+        <div class="views">
+
+            <span class="view-tag">
+                3/4 Front
+            </span>
+
+            <span class="view-tag">
+                3/4 Back
+            </span>
+
+            <span class="view-tag">
+                Front
+            </span>
+
+            <span class="view-tag">
+                Side
+            </span>
+
+            <span class="view-tag">
+                Back
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section>
+
+    <div class="container">
+
+        <div class="store-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    Character Assets
+                </h2>
+
+                <p>
+                    Animation-ready character resources.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+                    🧑‍🌾
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        2.5D CHARACTER
+                    </div>
+
+                    <h3>
+                        Bengali Village Man
+                    </h3>
+
+                    <p class="description">
+                        Professional Bengali village
+                        character designed for cartoon
+                        story animation.
+                    </p>
+
+                    <div class="views-count">
+
+                        <span>
+                            3/4 Front
+                        </span>
+
+                        <span>
+                            3/4 Back
+                        </span>
+
+                        <span>
+                            Front
+                        </span>
+
+                        <span>
+                            Side
+                        </span>
+
+                        <span>
+                            Back
+                        </span>
+
+                    </div>
+
+                    <div class="views-count">
+
+                        <span>PNG</span>
+                        <span>PSD</span>
+                        <span>AI</span>
+                        <span>Animate CC</span>
+                        <span>CTA5</span>
+
+                    </div>
+
+                    <div class="price-row">
+
+                        <div class="price">
+                            ₹299
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 2 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+                    👩‍🌾
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        2.5D CHARACTER
+                    </div>
+
+                    <h3>
+                        Bengali Village Woman
+                    </h3>
+
+                    <p class="description">
+                        Traditional Bengali female
+                        character for animated stories
+                        and YouTube cartoons.
+                    </p>
+
+                    <div class="views-count">
+
+                        <span>3/4 Front</span>
+                        <span>3/4 Back</span>
+                        <span>Front</span>
+                        <span>Side</span>
+                        <span>Back</span>
+
+                    </div>
+
+                    <div class="views-count">
+
+                        <span>PNG</span>
+                        <span>PSD</span>
+                        <span>AI</span>
+                        <span>Animate CC</span>
+                        <span>CTA5</span>
+
+                    </div>
+
+                    <div class="price-row">
+
+                        <div class="price">
+                            ₹299
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 3 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+                    👦
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        2.5D CHARACTER
+                    </div>
+
+                    <h3>
+                        Bengali Village Boy
+                    </h3>
+
+                    <p class="description">
+                        Cartoon child character
+                        suitable for Bengali moral
+                        stories and animation projects.
+                    </p>
+
+                    <div class="views-count">
+
+                        <span>3/4 Front</span>
+                        <span>3/4 Back</span>
+                        <span>Front</span>
+                        <span>Side</span>
+                        <span>Back</span>
+
+                    </div>
+
+                    <div class="views-count">
+
+                        <span>PNG</span>
+                        <span>PSD</span>
+                        <span>AI</span>
+                        <span>Animate CC</span>
+                        <span>CTA5</span>
+
+                    </div>
+
+                    <div class="price-row">
+
+                        <div class="price">
+                            ₹199
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMING SOON -->
+
+<section>
+
+    <div class="container">
+
+        <div class="coming-soon">
+
+            <h3>
+                More Professional Assets Coming Soon
+            </h3>
+
+            <p>
+                Character packs, poses, facial elements,
+                hands, mouths, eyes, props and
+                animation-ready resources.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</body>
+
+</html>
