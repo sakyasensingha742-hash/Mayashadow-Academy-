@@ -1714,7 +1714,452 @@ function closeLesson(){
     .classList.remove("active");
 
 }
+/* =========================================
+   LESSON PROGRESS SYSTEM
+========================================= */
 
+let currentCourse = null;
+let currentLesson = null;
+
+
+/* Get all lessons */
+
+function getAllLessons(course){
+
+  const lessons = [];
+
+  if(!course || !course.modules){
+    return lessons;
+  }
+
+  course.modules.forEach(function(module){
+
+    if(module.lessons){
+
+      module.lessons.forEach(function(lesson){
+
+        lessons.push(lesson);
+
+      });
+
+    }
+
+  });
+
+  return lessons;
+
+}
+
+
+/* Progress storage key */
+
+function getProgressKey(course){
+
+  return "maya_shadow_progress_" + course.id;
+
+}
+
+
+/* Get completed lessons */
+
+function getCompletedLessons(course){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        getProgressKey(course)
+      );
+
+    if(!saved){
+
+      return [];
+
+    }
+
+    return JSON.parse(saved);
+
+  }catch(error){
+
+    console.error(
+      "Progress loading error:",
+      error
+    );
+
+    return [];
+
+  }
+
+}
+
+
+/* Save completed lessons */
+
+function saveCompletedLessons(
+  course,
+  completed
+){
+
+  localStorage.setItem(
+    getProgressKey(course),
+    JSON.stringify(completed)
+  );
+
+}
+
+
+/* Check completed */
+
+function isLessonCompleted(
+  course,
+  lesson
+){
+
+  const completed =
+    getCompletedLessons(course);
+
+  return completed.includes(
+    lesson.id
+  );
+
+}
+
+
+/* Complete current lesson */
+
+function completeCurrentLesson(){
+
+  if(
+    !currentCourse ||
+    !currentLesson
+  ){
+
+    return;
+
+  }
+
+  const completed =
+    getCompletedLessons(
+      currentCourse
+    );
+
+  if(
+    !completed.includes(
+      currentLesson.id
+    )
+  ){
+
+    completed.push(
+      currentLesson.id
+    );
+
+  }
+
+  saveCompletedLessons(
+    currentCourse,
+    completed
+  );
+
+  updateLessonProgress();
+
+  updateCompletionStatus();
+
+}
+
+
+/* Update completion status */
+
+function updateCompletionStatus(){
+
+  const status =
+    document.getElementById(
+      "completionStatus"
+    );
+
+  const button =
+    document.getElementById(
+      "completeLessonBtn"
+    );
+
+  if(
+    !status ||
+    !button
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    currentCourse &&
+    currentLesson &&
+    isLessonCompleted(
+      currentCourse,
+      currentLesson
+    )
+  ){
+
+    status.textContent =
+      "✓ Completed";
+
+    status.style.color =
+      "#39d98a";
+
+    button.textContent =
+      "✓ Lesson Completed";
+
+    button.disabled = true;
+
+    button.style.opacity =
+      "0.75";
+
+    button.style.cursor =
+      "default";
+
+  }else{
+
+    status.textContent =
+      "Not completed";
+
+    status.style.color =
+      "#91a9bf";
+
+    button.textContent =
+      "✅ Mark as Complete";
+
+    button.disabled = false;
+
+    button.style.opacity =
+      "1";
+
+    button.style.cursor =
+      "pointer";
+
+  }
+
+}
+
+
+/* Update course progress */
+
+function updateLessonProgress(){
+
+  if(!currentCourse){
+
+    return;
+
+  }
+
+  const lessons =
+    getAllLessons(
+      currentCourse
+    );
+
+  const completed =
+    getCompletedLessons(
+      currentCourse
+    );
+
+  const total =
+    lessons.length;
+
+  const completedCount =
+    completed.length;
+
+  let percentage = 0;
+
+  if(total > 0){
+
+    percentage =
+      Math.round(
+        (completedCount / total) * 100
+      );
+
+  }
+
+
+  const progressText =
+    document.getElementById(
+      "lessonProgressText"
+    );
+
+  const progressBar =
+    document.getElementById(
+      "lessonProgressBar"
+    );
+
+
+  if(progressText){
+
+    progressText.textContent =
+      percentage + "%";
+
+  }
+
+
+  if(progressBar){
+
+    progressBar.style.width =
+      percentage + "%";
+
+  }
+
+  updateCompletionStatus();
+
+}
+
+
+/* Previous / Next buttons */
+
+function updateLessonNavigation(){
+
+  if(
+    !currentCourse ||
+    !currentLesson
+  ){
+
+    return;
+
+  }
+
+  const lessons =
+    getAllLessons(
+      currentCourse
+    );
+
+  const currentIndex =
+    lessons.findIndex(
+      function(lesson){
+
+        return lesson.id ===
+          currentLesson.id;
+
+      }
+    );
+
+
+  const previousButton =
+    document.getElementById(
+      "previousLessonBtn"
+    );
+
+  const nextButton =
+    document.getElementById(
+      "nextLessonBtn"
+    );
+
+
+  if(
+    !previousButton ||
+    !nextButton
+  ){
+
+    return;
+
+  }
+
+
+  previousButton.disabled =
+    currentIndex <= 0;
+
+  nextButton.disabled =
+    currentIndex >=
+    lessons.length - 1;
+
+}
+
+
+/* Previous lesson */
+
+function goToPreviousLesson(){
+
+  if(
+    !currentCourse ||
+    !currentLesson
+  ){
+
+    return;
+
+  }
+
+  const lessons =
+    getAllLessons(
+      currentCourse
+    );
+
+  const currentIndex =
+    lessons.findIndex(
+      function(lesson){
+
+        return lesson.id ===
+          currentLesson.id;
+
+      }
+    );
+
+
+  if(currentIndex <= 0){
+
+    return;
+
+  }
+
+
+  openLesson(
+    currentCourse,
+    lessons[currentIndex - 1]
+  );
+
+}
+
+
+/* Next lesson */
+
+function goToNextLesson(){
+
+  if(
+    !currentCourse ||
+    !currentLesson
+  ){
+
+    return;
+
+  }
+
+  const lessons =
+    getAllLessons(
+      currentCourse
+    );
+
+  const currentIndex =
+    lessons.findIndex(
+      function(lesson){
+
+        return lesson.id ===
+          currentLesson.id;
+
+      }
+    );
+
+
+  if(
+    currentIndex === -1 ||
+    currentIndex >=
+    lessons.length - 1
+  ){
+
+    return;
+
+  }
+
+
+  openLesson(
+    currentCourse,
+    lessons[currentIndex + 1]
+  );
+
+}
 
 /* =====================================================
    BACK TO COURSE DIRECTORY
