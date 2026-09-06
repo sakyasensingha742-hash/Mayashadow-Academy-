@@ -1444,7 +1444,116 @@ function loadDashboardCourses(){
 
 }
 
+/* ================================
+   MAYA SHADOW PROGRESS SYSTEM
+   ================================ */
 
+function updateDashboardProgress(){
+
+    const academy = window.MayaShadowAcademy;
+
+    if(!academy || !academy.courses){
+        return;
+    }
+
+    const courses = academy.courses;
+
+    let totalClasses = 0;
+    let completedClasses = 0;
+
+    courses.forEach(function(course){
+
+        if(!course || !course.modules){
+            return;
+        }
+
+        const courseClasses = [];
+
+        course.modules.forEach(function(module){
+
+            const classes =
+                module.classes ||
+                module.lessons ||
+                [];
+
+            classes.forEach(function(lesson){
+                courseClasses.push(lesson);
+            });
+
+        });
+
+        totalClasses += courseClasses.length;
+
+        const progressKey =
+            "maya_shadow_progress_" + course.id;
+
+        let saved = [];
+
+        try{
+
+            const stored =
+                localStorage.getItem(progressKey);
+
+            if(stored){
+                saved = JSON.parse(stored);
+            }
+
+        }catch(error){
+
+            console.error(
+                "Dashboard progress error:",
+                error
+            );
+
+            saved = [];
+
+        }
+
+        if(Array.isArray(saved)){
+
+            completedClasses += saved.length;
+
+        }
+
+    });
+
+    let overallProgress = 0;
+
+    if(totalClasses > 0){
+
+        overallProgress =
+            Math.round(
+                (completedClasses / totalClasses) * 100
+            );
+
+    }
+
+    const completedElement =
+        document.getElementById("completedClasses");
+
+    const overallElement =
+        document.getElementById("overallProgress");
+
+    if(completedElement){
+
+        completedElement.textContent =
+            completedClasses;
+
+    }
+
+    if(overallElement){
+
+        overallElement.textContent =
+            overallProgress + "%";
+
+    }
+
+}
+
+
+/* Update dashboard after courses load */
+
+updateDashboardProgress();
 loadDashboardCourses();
 
 </script>
