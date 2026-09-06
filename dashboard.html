@@ -1343,7 +1343,7 @@ function loadDashboardCourses(){
     /* Show first 6 courses */
 
     const visibleCourses =
-    courses.slice(0,6);
+    courses;
 
 
     grid.innerHTML =
@@ -1427,7 +1427,7 @@ function loadDashboardCourses(){
 
 
                 <a
-                href="courses.html"
+                href="courses.html?course=${encodeURIComponent(course.id)}"
                 class="course-action">
 
                     View Course →
