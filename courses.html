@@ -1603,7 +1603,23 @@ function openCourse(courseId){
   });
 
 }
+/* Open course from URL */
 
+window.addEventListener("load", function(){
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const courseId =
+        params.get("course");
+
+    if(courseId){
+
+        openCourse(courseId);
+
+    }
+
+});
 
 /* =====================================================
    LESSON WINDOW
