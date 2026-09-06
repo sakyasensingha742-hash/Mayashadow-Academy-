@@ -1668,7 +1668,61 @@ function updateContinueLearningProgress(){
 updateContinueLearningProgress();
 updateDashboardProgress();
 loadDashboardCourses();
+/* Continue Course Button */
 
+function openContinueCourse(){
+
+    let selectedCourse = null;
+    let selectedProgress = -1;
+
+    courses.forEach(function(course){
+
+        const completed =
+            getCompletedLessons(course);
+
+        let totalClasses = 0;
+
+        course.modules.forEach(function(module){
+
+            totalClasses +=
+                (module.classes || []).length;
+
+        });
+
+        let progress = 0;
+
+        if(totalClasses > 0){
+
+            progress =
+                Math.round(
+                    (completed.length / totalClasses) * 100
+                );
+
+        }
+
+        if(progress > selectedProgress){
+
+            selectedCourse = course;
+            selectedProgress = progress;
+
+        }
+
+    });
+
+    if(selectedCourse){
+
+        window.location.href =
+            "courses.html?course=" +
+            encodeURIComponent(selectedCourse.id);
+
+    }else{
+
+        window.location.href =
+            "courses.html";
+
+    }
+
+}
 </script>
 
 </body>
