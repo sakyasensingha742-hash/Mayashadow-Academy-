@@ -2232,7 +2232,30 @@ document.addEventListener("keydown", function(event){
   }
 
 });
+/* =========================================
+   LESSON BUTTON EVENTS
+========================================= */
 
+document
+  .getElementById("completeLessonBtn")
+  .addEventListener(
+    "click",
+    completeCurrentLesson
+  );
+
+document
+  .getElementById("previousLessonBtn")
+  .addEventListener(
+    "click",
+    goToPreviousLesson
+  );
+
+document
+  .getElementById("nextLessonBtn")
+  .addEventListener(
+    "click",
+    goToNextLesson
+  );
 
 /* =====================================================
    INITIALIZE
