@@ -1552,7 +1552,119 @@ function updateDashboardProgress(){
 
 
 /* Update dashboard after courses load */
+/* ================================
+   CONTINUE LEARNING PROGRESS
+   ================================ */
 
+function updateContinueLearningProgress(){
+
+    const academy = window.MayaShadowAcademy;
+
+    if(!academy || !academy.courses){
+        return;
+    }
+
+    const courses = academy.courses;
+
+    let selectedCourse = courses[0];
+    let selectedProgress = 0;
+
+    courses.forEach(function(course){
+
+        if(!course || !course.modules){
+            return;
+        }
+
+        let total = 0;
+
+        course.modules.forEach(function(module){
+
+            const classes =
+                module.classes ||
+                module.lessons ||
+                [];
+
+            total += classes.length;
+
+        });
+
+        if(total === 0){
+            return;
+        }
+
+        const key =
+            "maya_shadow_progress_" + course.id;
+
+        let completed = [];
+
+        try{
+
+            const saved =
+                localStorage.getItem(key);
+
+            if(saved){
+                completed = JSON.parse(saved);
+            }
+
+        }catch(error){
+
+            completed = [];
+
+        }
+
+        if(!Array.isArray(completed)){
+            completed = [];
+        }
+
+        const progress =
+            Math.round(
+                (completed.length / total) * 100
+            );
+
+        /*
+         * Select the course with the highest
+         * current progress.
+         */
+
+        if(progress > selectedProgress){
+
+            selectedCourse = course;
+            selectedProgress = progress;
+
+        }
+
+    });
+
+    const progressText =
+        document.getElementById(
+            "continueProgressText"
+        );
+
+    const progressBar =
+        document.getElementById(
+            "continueProgress"
+        );
+
+    if(progressText){
+
+        progressText.textContent =
+            selectedProgress + "% Complete";
+
+    }
+
+    if(progressBar){
+
+        progressBar.style.width =
+            selectedProgress + "%";
+
+    }
+
+}
+
+
+/* Update Continue Learning */
+
+updateContinueLearningProgress();
 updateDashboardProgress();
 loadDashboardCourses();
 
