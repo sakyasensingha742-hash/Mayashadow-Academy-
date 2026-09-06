@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Background Store | Maya Shadow Academy</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#06101f;
+    color:#f4f7ff;
+    min-height:100vh;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+}
+
+/* NAVIGATION */
+
+.navbar{
+    height:68px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:#081323;
+    display:flex;
+    align-items:center;
+}
+
+.nav-inner{
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#35bdf5;
+}
+
+.nav-links{
+    display:flex;
+    gap:26px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#cbd8eb;
+    font-size:15px;
+}
+
+.nav-links a:hover{
+    color:#35bdf5;
+}
+
+.back-btn{
+    padding:11px 17px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    background:#111f33;
+}
+
+/* HERO */
+
+.hero{
+    padding:70px 0 45px;
+    text-align:center;
+}
+
+.hero-label{
+    color:#35bdf5;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:14px;
+}
+
+.hero h1{
+    font-size:clamp(34px,5vw,56px);
+    margin-bottom:18px;
+}
+
+.hero p{
+    max-width:780px;
+    margin:auto;
+    color:#9db1ca;
+    line-height:1.7;
+    font-size:17px;
+}
+
+/* CATEGORY */
+
+.category-section{
+    margin-bottom:45px;
+}
+
+.section-title{
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+}
+
+.category-card{
+    background:#0d1b2d;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:14px;
+    padding:22px 12px;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.category-card:hover{
+    transform:translateY(-4px);
+    border-color:#35bdf5;
+}
+
+.category-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.category-card strong{
+    display:block;
+    font-size:14px;
+}
+
+.category-card small{
+    display:block;
+    margin-top:6px;
+    color:#8095b0;
+}
+
+/* FORMAT */
+
+.format-section{
+    margin-bottom:48px;
+}
+
+.format-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.format-tag{
+    padding:9px 15px;
+    border-radius:30px;
+    background:#101f34;
+    border:1px solid rgba(255,255,255,.09);
+    color:#c8d6e8;
+    font-size:14px;
+}
+
+/* PRODUCTS */
+
+.store-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:22px;
+}
+
+.store-header p{
+    color:#8197b2;
+    margin-top:7px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    padding-bottom:80px;
+}
+
+.product-card{
+    background:#0d1b2d;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    border-color:#35bdf5;
+}
+
+/* CINEMATIC PREVIEW */
+
+.product-preview{
+    position:relative;
+    height:280px;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #1d3855,
+            #091526
+        );
+}
+
+.preview-art{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:90px;
+    transition:.4s;
+}
+
+.product-card:hover .preview-art{
+    transform:scale(1.05);
+}
+
+.preview-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    padding:7px 11px;
+    border-radius:8px;
+    background:rgba(3,12,24,.8);
+    border:1px solid rgba(255,255,255,.12);
+    font-size:11px;
+    font-weight:800;
+    color:#fff;
+}
+
+.preview-gradient{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:90px;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(3,10,20,.9)
+        );
+}
+
+/* PRODUCT INFO */
+
+.product-info{
+    padding:22px;
+}
+
+.category{
+    color:#35bdf5;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.product-info h3{
+    font-size:21px;
+    margin:9px 0 10px;
+}
+
+.description{
+    color:#91a6bf;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.asset-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin:17px 0;
+}
+
+.asset-tags span{
+    background:#071321;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:11px;
+    color:#b9c9db;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+}
+
+.price{
+    font-size:24px;
+    font-weight:800;
+}
+
+.details-btn{
+    padding:11px 16px;
+    border-radius:9px;
+    background:#35bdf5;
+    color:#04101c;
+    font-weight:800;
+}
+
+/* COMING SOON */
+
+.coming-soon{
+    margin-bottom:70px;
+    padding:30px;
+    border-radius:16px;
+    background:#0b182a;
+    border:1px dashed rgba(53,189,245,.35);
+    text-align:center;
+}
+
+.coming-soon h3{
+    margin-bottom:8px;
+}
+
+.coming-soon p{
+    color:#8399b4;
+    line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .category-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:45px;
+    }
+
+    .product-preview{
+        height:220px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            Maya Shadow
+            <span>Academy</span>
+
+        </a>
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="courses.html">
+                Courses
+            </a>
+
+            <a href="character-store.html">
+                Character Store
+            </a>
+
+            <a href="background-store.html">
+                Background Store
+            </a>
+
+            <a
+                href="index.html"
+                class="back-btn">
+
+                ← Back Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-label">
+            MAYA SHADOW ASSET STORE
+        </div>
+
+        <h1>
+            Background Store
+        </h1>
+
+        <p>
+            Professional cinematic backgrounds
+            for 2D, 2.5D, cartoon stories,
+            YouTube animation and visual storytelling.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORY -->
+
+<section class="category-section">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Browse Backgrounds
+        </h2>
+
+        <div class="category-grid">
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🏡
+                </div>
+
+                <strong>
+                    Village
+                </strong>
+
+                <small>
+                    Rural environments
+                </small>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🏠
+                </div>
+
+                <strong>
+                    House
+                </strong>
+
+                <small>
+                    Interior & Exterior
+                </small>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🌲
+                </div>
+
+                <strong>
+                    Forest
+                </strong>
+
+                <small>
+                    Nature scenes
+                </small>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    🌊
+                </div>
+
+                <strong>
+                    River
+                </strong>
+
+                <small>
+                    River & lakes
+                </small>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-icon">
+                    👻
+                </div>
+
+                <strong>
+                    Horror
+                </strong>
+
+                <small>
+                    Dark environments
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FORMATS -->
+
+<section class="format-section">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Available Formats
+        </h2>
+
+        <div class="format-list">
+
+            <span class="format-tag">
+                PNG
+            </span>
+
+            <span class="format-tag">
+                PSD
+            </span>
+
+            <span class="format-tag">
+                Adobe Illustrator AI
+            </span>
+
+            <span class="format-tag">
+                Adobe Animate CC
+            </span>
+
+            <span class="format-tag">
+                Cartoon Animator 5
+            </span>
+
+            <span class="format-tag">
+                2.5D Layered
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section>
+
+    <div class="container">
+
+        <div class="store-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    Featured Backgrounds
+                </h2>
+
+                <p>
+                    Cinematic environments for animation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+
+                    <div class="preview-art">
+                        🏡🌳
+                    </div>
+
+                    <div class="preview-badge">
+                        2.5D BACKGROUND
+                    </div>
+
+                    <div class="preview-gradient">
+                    </div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        VILLAGE
+                    </div>
+
+                    <h3>
+                        Bengali Village House
+                    </h3>
+
+                    <p class="description">
+                        Cinematic Bengali village
+                        environment with traditional
+                        house, trees, courtyard and
+                        natural atmosphere.
+                    </p>
+
+                    <div class="asset-tags">
+
+                        <span>
+                            Day
+                        </span>
+
+                        <span>
+                            Evening
+                        </span>
+
+                        <span>
+                            PNG
+                        </span>
+
+                        <span>
+                            PSD
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
+                        <span>
+                            2.5D Layers
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price">
+                            ₹299
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+
+                            View Details →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 2 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+
+                    <div class="preview-art">
+                        🌳🌊
+                    </div>
+
+                    <div class="preview-badge">
+                        CINEMATIC
+                    </div>
+
+                    <div class="preview-gradient">
+                    </div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        RIVER
+                    </div>
+
+                    <h3>
+                        Bengali River Bank
+                    </h3>
+
+                    <p class="description">
+                        Peaceful river-side environment
+                        designed for emotional stories,
+                        village animation and cinematic
+                        scenes.
+                    </p>
+
+                    <div class="asset-tags">
+
+                        <span>
+                            Day
+                        </span>
+
+                        <span>
+                            Sunset
+                        </span>
+
+                        <span>
+                            PNG
+                        </span>
+
+                        <span>
+                            PSD
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
+                        <span>
+                            Layered
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price">
+                            ₹249
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+
+                            View Details →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 3 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+
+                    <div class="preview-art">
+                        🌲🌲
+                    </div>
+
+                    <div class="preview-badge">
+                        2.5D ENVIRONMENT
+                    </div>
+
+                    <div class="preview-gradient">
+                    </div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        FOREST
+                    </div>
+
+                    <h3>
+                        Mystery Forest
+                    </h3>
+
+                    <p class="description">
+                        Atmospheric forest environment
+                        for adventure, mystery and
+                        horror cartoon stories.
+                    </p>
+
+                    <div class="asset-tags">
+
+                        <span>
+                            Day
+                        </span>
+
+                        <span>
+                            Night
+                        </span>
+
+                        <span>
+                            PNG
+                        </span>
+
+                        <span>
+                            PSD
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
+                        <span>
+                            CTA5
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price">
+                            ₹299
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+
+                            View Details →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 4 -->
+
+            <article class="product-card">
+
+                <div class="product-preview">
+
+                    <div class="preview-art">
+                        🌙🏚️
+                    </div>
+
+                    <div class="preview-badge">
+                        HORROR
+                    </div>
+
+                    <div class="preview-gradient">
+                    </div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="category">
+                        HORROR
+                    </div>
+
+                    <h3>
+                        Haunted Village Night
+                    </h3>
+
+                    <p class="description">
+                        Dark cinematic village
+                        environment for supernatural,
+                        mystery and horror animation.
+                    </p>
+
+                    <div class="asset-tags">
+
+                        <span>
+                            Night
+                        </span>
+
+                        <span>
+                            Fog
+                        </span>
+
+                        <span>
+                            PNG
+                        </span>
+
+                        <span>
+                            PSD
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
+                        <span>
+                            2.5D Layers
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price">
+                            ₹349
+                        </div>
+
+                        <a
+                            href="#"
+                            class="details-btn">
+
+                            View Details →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMING SOON -->
+
+<section>
+
+    <div class="container">
+
+        <div class="coming-soon">
+
+            <h3>
+                More Cinematic Backgrounds Coming Soon
+            </h3>
+
+            <p>
+                Village roads, bedrooms, schools,
+                city streets, temples, rivers,
+                forests, horror locations and
+                complete 2.5D scene packs.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</body>
+
+</html>
