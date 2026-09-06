@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin Panel | Maya Shadow Academy</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#06101f;
+    color:#f4f7ff;
+
+    min-height:100vh;
+
+}
+
+.container{
+
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    height:68px;
+
+    background:#081323;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    align-items:center;
+
+}
+
+.nav-inner{
+
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+}
+
+.logo{
+
+    font-size:23px;
+    font-weight:800;
+
+}
+
+.logo span{
+
+    color:#35bdf5;
+
+}
+
+.admin-badge{
+
+    padding:
+        8px 13px;
+
+    border-radius:20px;
+
+    background:#10243a;
+
+    color:#35bdf5;
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+/* HEADER */
+
+.page-header{
+
+    padding:
+        55px 0 35px;
+
+}
+
+.page-header small{
+
+    color:#35bdf5;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+}
+
+.page-header h1{
+
+    font-size:
+        clamp(32px,5vw,48px);
+
+    margin:
+        10px 0;
+
+}
+
+.page-header p{
+
+    color:#91a6bf;
+
+    max-width:720px;
+
+    line-height:1.7;
+
+}
+
+/* STATS */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.stat{
+
+    background:#0d1b2d;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    padding:22px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:28px;
+
+    color:#35bdf5;
+
+}
+
+.stat span{
+
+    color:#8197b2;
+
+    font-size:13px;
+
+}
+
+/* PANEL */
+
+.panel{
+
+    background:#0b182a;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+}
+
+.panel-title{
+
+    font-size:23px;
+
+    margin-bottom:7px;
+
+}
+
+.panel-subtitle{
+
+    color:#8197b2;
+
+    font-size:14px;
+
+    margin-bottom:28px;
+
+}
+
+/* FORM */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+}
+
+.form-group.full{
+
+    grid-column:
+        1 / -1;
+
+}
+
+label{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#c8d6e8;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:
+        13px 14px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    border-radius:9px;
+
+    background:#071321;
+
+    color:#fff;
+
+    outline:none;
+
+    font-size:14px;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#35bdf5;
+
+}
+
+textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+/* CHECKBOXES */
+
+.option-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+.option{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:
+        12px;
+
+    border-radius:9px;
+
+    background:#071321;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+.option input{
+
+    width:auto;
+
+}
+
+.option span{
+
+    font-size:13px;
+
+    color:#b9c9db;
+
+}
+
+/* UPLOAD BOX */
+
+.upload-box{
+
+    border:
+        1px dashed rgba(53,189,245,.4);
+
+    border-radius:12px;
+
+    padding:22px;
+
+    background:#081625;
+
+}
+
+.upload-box + .upload-box{
+
+    margin-top:14px;
+
+}
+
+.upload-title{
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+.upload-help{
+
+    color:#8197b2;
+
+    font-size:12px;
+
+    margin-bottom:14px;
+
+}
+
+input[type="file"]{
+
+    padding:10px;
+
+}
+
+/* VIEWS */
+
+.view-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:10px;
+
+}
+
+.view-box{
+
+    padding:14px 8px;
+
+    text-align:center;
+
+    background:#071321;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius:9px;
+
+}
+
+.view-box input{
+
+    width:auto;
+
+    margin-right:5px;
+
+}
+
+.view-box label{
+
+    font-size:12px;
+
+}
+
+/* BUTTONS */
+
+.actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:28px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:9px;
+
+    padding:
+        13px 20px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.btn-primary{
+
+    background:#35bdf5;
+
+    color:#04101c;
+
+}
+
+.btn-secondary{
+
+    background:#142238;
+
+    color:#d8e4f2;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+}
+
+.btn:hover{
+
+    transform:
+        translateY(-1px);
+
+}
+
+/* NOTICE */
+
+.notice{
+
+    padding:18px;
+
+    border-radius:12px;
+
+    background:#101f34;
+
+    border:
+        1px solid rgba(53,189,245,.2);
+
+    color:#9db1ca;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+
+}
+
+/* FOOTER */
+
+.footer{
+
+    padding:
+        30px 0 60px;
+
+    text-align:center;
+
+    color:#657b96;
+
+    font-size:12px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .option-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .view-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .option-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .panel{
+
+        padding:20px;
+
+    }
+
+    .actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            Maya Shadow
+            <span>Academy</span>
+
+        </a>
+
+        <div class="admin-badge">
+            ADMIN PANEL
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<header class="page-header">
+
+    <div class="container">
+
+        <small>
+            MAYA SHADOW ACADEMY
+        </small>
+
+        <h1>
+            Asset Management
+        </h1>
+
+        <p>
+            Create and manage characters,
+            character bundles, backgrounds and
+            digital animation resources.
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <strong id="productCount">
+            0
+        </strong>
+
+        <span>
+            Products
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            5
+        </strong>
+
+        <span>
+            Character Views
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <strong>
+            5
+        </strong>
+
+        <span>
+            File Formats
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- NOTICE -->
+
+<div class="notice">
+
+    <strong>
+        Admin development mode:
+    </strong>
+
+    এই panel এখন product information এবং
+    upload structure তৈরি করার জন্য।
+    Real secure file storage, login,
+    payment এবং protected downloads
+    পরের ধাপে যুক্ত করা হবে।
+
+</div>
+
+
+<!-- PRODUCT FORM -->
+
+<section class="panel">
+
+    <h2 class="panel-title">
+        Add New Product
+    </h2>
+
+    <p class="panel-subtitle">
+        Create a single character, bundle,
+        background or other digital asset.
+    </p>
+
+
+    <form id="productForm">
+
+
+        <!-- BASIC INFORMATION -->
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Type
+                </label>
+
+                <select id="productType">
+
+                    <option value="character">
+                        Single Character
+                    </option>
+
+                    <option value="bundle">
+                        2 Character Bundle
+                    </option>
+
+                    <option value="background">
+                        Background
+                    </option>
+
+                    <option value="resource">
+                        Other Resource
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="category">
+
+                    <option>
+                        Men
+                    </option>
+
+                    <option>
+                        Women
+                    </option>
+
+                    <option>
+                        Kids
+                    </option>
+
+                    <option>
+                        Elderly
+                    </option>
+
+                    <option>
+                        Occupation
+                    </option>
+
+                    <option>
+                        Fantasy & Horror
+                    </option>
+
+                    <option>
+                        Animals
+                    </option>
+
+                    <option>
+                        Village
+                    </option>
+
+                    <option>
+                        House
+                    </option>
+
+                    <option>
+                        Forest
+                    </option>
+
+                    <option>
+                        River
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Example: Bengali Village Man"
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Short Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe the character or asset..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Price (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="price"
+                    min="0"
+                    placeholder="299"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Original Price (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="originalPrice"
+                    min="0"
+                    placeholder="399"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- CHARACTER VIEWS -->
+
+        <div
+            class="form-group full"
+            style="margin-top:28px;">
+
+            <label>
+                Character Views
+            </label>
+
+            <div class="view-grid">
+
+
+                <div class="view-box">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+                        3/4 Front
+                    </label>
+
+                </div>
+
+
+                <div class="view-box">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+                        3/4 Back
+                    </label>
+
+                </div>
+
+
+                <div class="view-box">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+                        Front
+                    </label>
+
+                </div>
+
+
+                <div class="view-box">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+                        Side
+                    </label>
+
+                </div>
+
+
+                <div class="view-box">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+                        Back
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMATS -->
+
+        <div
+            class="form-group full"
+            style="margin-top:28px;">
+
+            <label>
+                Available File Formats
+            </label>
+
+            <div class="option-grid">
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        PNG
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        Photoshop PSD
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        Adobe Illustrator AI
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        Adobe Animate CC
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        Cartoon Animator 5
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                    >
+
+                    <span>
+                        2.5D Layered
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREVIEW -->
+
+        <div
+            class="upload-box"
+            style="margin-top:28px;">
+
+            <div class="upload-title">
+                Product Preview Image
+            </div>
+
+            <div class="upload-help">
+                Main attractive image customers will see
+                in the store.
+            </div>
+
+            <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+        </div>
+
+
+        <!-- VIEW FILES -->
+
+        <div
+            class="upload-box"
+            style="margin-top:14px;">
+
+            <div class="upload-title">
+                Character View Images
+            </div>
+
+            <div class="upload-help">
+                Upload Front, Side, Back,
+                3/4 Front and 3/4 Back preview images.
+            </div>
+
+            <input
+                type="file"
+                multiple
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+        </div>
+
+
+        <!-- DIGITAL FILES -->
+
+        <div
+            class="upload-box"
+            style="margin-top:14px;">
+
+            <div class="upload-title">
+                Digital Asset Files
+            </div>
+
+            <div class="upload-help">
+                PNG, PSD, AI, FLA, CTA5,
+                ZIP and other project files.
+            </div>
+
+            <input
+                type="file"
+                multiple
+            >
+
+        </div>
+
+
+        <!-- BUNDLE -->
+
+        <div
+            class="form-group full"
+            style="margin-top:28px;">
+
+            <label>
+                Bundle Information
+            </label>
+
+            <input
+                type="text"
+                placeholder="Example: Village Man + Village Woman"
+            >
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="previewProduct()">
+
+                Preview Product
+
+            </button>
+
+
+            <button
+                type="submit"
+                class="btn btn-secondary">
+
+                Save Product Draft
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+<!-- PREVIEW RESULT -->
+
+<section
+    class="panel"
+    id="previewPanel"
+    style="display:none;">
+
+    <h2 class="panel-title">
+        Product Preview
+    </h2>
+
+    <p
+        class="panel-subtitle"
+        id="previewText">
+    </p>
+
+</section>
+
+
+</main>
+
+
+<footer class="footer">
+
+    Maya Shadow Academy
+    • Asset Management System
+
+</footer>
+
+
+<script>
+
+/* PRODUCT COUNTER */
+
+let products =
+    Number(
+        localStorage.getItem(
+            "maya_admin_product_count"
+        ) || 0
+    );
+
+document.getElementById(
+    "productCount"
+).textContent = products;
+
+
+/* PREVIEW */
+
+function previewProduct(){
+
+    const name =
+        document.getElementById(
+            "productName"
+        ).value || "Untitled Product";
+
+    const type =
+        document.getElementById(
+            "productType"
+        ).value;
+
+    const price =
+        document.getElementById(
+            "price"
+        ).value || "0";
+
+    const panel =
+        document.getElementById(
+            "previewPanel"
+        );
+
+    const text =
+        document.getElementById(
+            "previewText"
+        );
+
+    panel.style.display =
+        "block";
+
+    text.innerHTML =
+        "<strong>" +
+        name +
+        "</strong><br><br>" +
+
+        "Type: " +
+        type +
+        "<br>" +
+
+        "Price: ₹" +
+        price +
+        "<br><br>" +
+
+        "Product structure ready for " +
+        "PNG, PSD, AI, Adobe Animate CC " +
+        "and Cartoon Animator 5.";
+
+    panel.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* DRAFT SAVE */
+
+document.getElementById(
+    "productForm"
+).addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+        products++;
+
+        localStorage.setItem(
+            "maya_admin_product_count",
+            products
+        );
+
+        document.getElementById(
+            "productCount"
+        ).textContent =
+            products;
+
+        alert(
+            "Product draft saved locally."
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
