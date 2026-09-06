@@ -1,0 +1,37 @@
+name: One-time dashboard course fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update dashboard course links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('dashboard.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('const visibleCourses =\n    courses.slice(0,6);', 'const visibleCourses =\n    courses;')
+          old = '''                <a\n                href="courses.html"\n                class="course-action">'''
+          new = '''                <a\n                href="courses.html?course=${encodeURIComponent(course.id)}"\n                class="course-action">'''
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit and remove this workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dashboard.html
+          git rm .github/workflows/dashboard-course-fix.yml
+          git commit -m "Show all courses in student dashboard" || exit 0
+          git push
