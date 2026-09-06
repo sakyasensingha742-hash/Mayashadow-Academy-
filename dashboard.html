@@ -1669,24 +1669,71 @@ updateDashboardProgress();
 loadDashboardCourses();
 /* Continue Course Button */
 
+/* Continue Course Button */
+
 function openContinueCourse(){
 
-    let selectedCourse = null;
-    let selectedProgress = -1;
+    const academyData =
+        window.MayaShadowAcademy;
 
-    courses.forEach(function(course){
+    if(
+        !academyData ||
+        !academyData.courses ||
+        !academyData.courses.length
+    ){
 
-        const completed =
-            getCompletedLessons(course);
+        window.location.href = "courses.html";
+        return;
+
+    }
+
+    const allCourses =
+        academyData.courses;
+
+    let selectedCourse =
+        allCourses[0];
+
+    let selectedProgress =
+        -1;
+
+    allCourses.forEach(function(course){
+
+        const progressKey =
+            "maya_shadow_progress_" +
+            course.id;
+
+        let completed = [];
+
+        try{
+
+            const saved =
+                localStorage.getItem(progressKey);
+
+            if(saved){
+
+                completed =
+                    JSON.parse(saved);
+
+            }
+
+        }catch(error){
+
+            completed = [];
+
+        }
 
         let totalClasses = 0;
 
-        course.modules.forEach(function(module){
+        if(course.modules){
 
-            totalClasses +=
-                (module.classes || []).length;
+            course.modules.forEach(function(module){
 
-        });
+                totalClasses +=
+                    (module.classes || []).length;
+
+            });
+
+        }
 
         let progress = 0;
 
@@ -1694,25 +1741,31 @@ function openContinueCourse(){
 
             progress =
                 Math.round(
-                    (completed.length / totalClasses) * 100
+                    (completed.length /
+                    totalClasses) * 100
                 );
 
         }
 
         if(progress > selectedProgress){
 
-            selectedCourse = course;
-            selectedProgress = progress;
+            selectedCourse =
+                course;
+
+            selectedProgress =
+                progress;
 
         }
 
     });
 
-    if(selectedCourse){
+    if(selectedCourse && selectedCourse.id){
 
         window.location.href =
             "courses.html?course=" +
-            encodeURIComponent(selectedCourse.id);
+            encodeURIComponent(
+                selectedCourse.id
+            );
 
     }else{
 
