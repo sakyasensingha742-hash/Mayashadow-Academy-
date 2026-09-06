@@ -1688,16 +1688,18 @@ function getAllLessons(course){
 
   course.modules.forEach(function(module){
 
-    if(module.lessons){
+    
 
-      module.lessons.forEach(function(lesson){
+const moduleClasses =
+    module.classes ||
+    module.lessons ||
+    [];
 
-        lessons.push(lesson);
+moduleClasses.forEach(function(lesson){
 
-      });
+    lessons.push(lesson);
 
-    }
-
+});
   });
 
   return lessons;
