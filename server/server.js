@@ -2,13 +2,43 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
-import { S3Client, HeadBucketCommand } from '@aws-sdk/client-s3';
+import { S3Client, HeadBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const app = express();
 const PORT = process.env.PORT || 10000;
+const MAX_UPLOAD_SIZE = 500 * 1024 * 1024;
 
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || true }));
 app.use(express.json({ limit: '1mb' }));
+
+function getR2Client() {
+  return new S3Client({
+    region: 'auto',
+    endpoint: process.env.R2_ENDPOINT,
+    credentials: {
+      accessKeyId: process.env.R2_ACCESS_KEY_ID,
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
+    }
+  });
+}
+
+function requireAdminUploadToken(req, res, next) {
+  const configuredToken = process.env.ADMIN_UPLOAD_TOKEN;
+  if (!configuredToken) {
+    return res.status(503).json({
+      ok: false,
+      error: 'Admin upload security is not configured yet.'
+    });
+  }
+
+  const suppliedToken = req.get('x-admin-upload-token');
+  if (!suppliedToken || suppliedToken !== configuredToken) {
+    return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+  }
+
+  next();
+}
 
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, service: 'maya-shadow-academy-api' });
@@ -95,16 +125,7 @@ app.get('/api/storage/test', async (_req, res) => {
       });
     }
 
-    const client = new S3Client({
-      region: 'auto',
-      endpoint: process.env.R2_ENDPOINT,
-      credentials: {
-        accessKeyId: process.env.R2_ACCESS_KEY_ID,
-        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
-      }
-    });
-
-    await client.send(new HeadBucketCommand({
+    await getR2Client().send(new HeadBucketCommand({
       Bucket: process.env.R2_BUCKET
     }));
 
@@ -122,6 +143,53 @@ app.get('/api/storage/test', async (_req, res) => {
       provider: 'cloudflare-r2',
       error: 'R2 connection test failed.'
     });
+  }
+});
+
+app.post('/api/storage/upload-url', requireAdminUploadToken, async (req, res) => {
+  try {
+    const { fileName, contentType, size } = req.body || {};
+    const numericSize = Number(size);
+
+    if (!fileName || typeof fileName !== 'string' || fileName.length > 180) {
+      return res.status(400).json({ ok: false, error: 'A valid fileName is required.' });
+    }
+
+    if (!contentType || typeof contentType !== 'string' || contentType.length > 160) {
+      return res.status(400).json({ ok: false, error: 'A valid contentType is required.' });
+    }
+
+    if (!Number.isFinite(numericSize) || numericSize <= 0 || numericSize > MAX_UPLOAD_SIZE) {
+      return res.status(400).json({
+        ok: false,
+        error: 'File size must be greater than 0 and no larger than 500 MB.'
+      });
+    }
+
+    const safeName = fileName
+      .replace(/[^a-zA-Z0-9._-]/g, '-')
+      .replace(/-+/g, '-')
+      .slice(-140);
+    const objectKey = `uploads/${Date.now()}-${crypto.randomUUID()}-${safeName}`;
+
+    const command = new PutObjectCommand({
+      Bucket: process.env.R2_BUCKET,
+      Key: objectKey,
+      ContentType: contentType
+    });
+
+    const uploadUrl = await getSignedUrl(getR2Client(), command, { expiresIn: 900 });
+
+    res.json({
+      ok: true,
+      objectKey,
+      uploadUrl,
+      expiresIn: 900,
+      maxUploadSize: MAX_UPLOAD_SIZE
+    });
+  } catch (error) {
+    console.error('R2 upload URL error:', error);
+    res.status(500).json({ ok: false, error: 'Unable to create upload URL.' });
   }
 });
 
