@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
-import { S3Client, HeadBucketCommand, PutObjectCommand, PutBucketCorsCommand } from '@aws-sdk/client-s3';
+import { S3Client, HeadBucketCommand, PutObjectCommand, PutBucketCorsCommand, ListObjectsV2Command, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const app = express();
@@ -38,6 +38,10 @@ function requireAdminUploadToken(req, res, next) {
 function safePathPart(value, fallback = 'misc') {
   const cleaned = String(value || '').trim().toLowerCase().replace(/[^a-z0-9-_]+/g, '-').replace(/^-+|-+$/g, '');
   return cleaned.slice(0, 80) || fallback;
+}
+
+function getProductPrefix(category, productId) {
+  return `products/${safePathPart(category)}/${safePathPart(productId)}/`;
 }
 
 app.get('/api/health', (_req, res) => {
@@ -112,30 +116,7 @@ app.post('/api/storage/write-test', requireAdminUploadToken, async (_req, res) =
 });
 
 app.post('/api/storage/configure-cors', requireAdminUploadToken, async (_req, res) => {
-  try {
-    const origin = process.env.FRONTEND_ORIGIN;
-    if (!origin) {
-      return res.status(503).json({ ok: false, error: 'FRONTEND_ORIGIN is not configured.' });
-    }
-    await getR2Client().send(new PutBucketCorsCommand({
-      Bucket: process.env.R2_BUCKET,
-      CORSConfiguration: {
-        CORSRules: [
-          {
-            AllowedOrigins: [origin],
-            AllowedMethods: ['PUT', 'GET', 'HEAD'],
-            AllowedHeaders: ['Content-Type', 'Content-Length'],
-            ExposeHeaders: ['ETag'],
-            MaxAgeSeconds: 3600
-          }
-        ]
-      }
-    }));
-    res.json({ ok: true, configured: true, origin });
-  } catch (error) {
-    console.error('R2 CORS configuration error:', error);
-    res.status(502).json({ ok: false, configured: false, error: 'Unable to configure R2 browser upload CORS.' });
-  }
+  res.status(410).json({ ok: false, error: 'CORS is managed in the Cloudflare R2 bucket settings.' });
 });
 
 app.post('/api/storage/presign-upload', requireAdminUploadToken, async (req, res) => {
@@ -150,13 +131,46 @@ app.post('/api/storage/presign-upload', requireAdminUploadToken, async (req, res
     }
     const safeName = String(filename).split(/[\\/]/).pop().replace(/[^a-zA-Z0-9._-]+/g, '-').slice(0, 140);
     const ext = safeName.includes('.') ? safeName.split('.').pop().toLowerCase() : 'bin';
-    const key = `products/${safePathPart(category)}/${safePathPart(productId)}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+    const key = `${getProductPrefix(category, productId)}${Date.now()}-${crypto.randomUUID()}.${ext}`;
     const command = new PutObjectCommand({ Bucket: process.env.R2_BUCKET, Key: key, ContentType: contentType });
     const uploadUrl = await getSignedUrl(getR2Client(), command, { expiresIn: 900 });
     res.json({ ok: true, uploadUrl, objectKey: key, expiresIn: 900, maxUploadBytes: MAX_UPLOAD_BYTES });
   } catch (error) {
     console.error('R2 presign error:', error);
     res.status(502).json({ ok: false, error: 'Unable to prepare secure R2 upload.' });
+  }
+});
+
+app.get('/api/storage/product-files', requireAdminUploadToken, async (req, res) => {
+  try {
+    const { category = 'assets', productId = 'unassigned' } = req.query || {};
+    const prefix = getProductPrefix(category, productId);
+    const response = await getR2Client().send(new ListObjectsV2Command({ Bucket: process.env.R2_BUCKET, Prefix: prefix }));
+    const files = (response.Contents || []).map((item) => ({
+      objectKey: item.Key,
+      size: Number(item.Size || 0),
+      lastModified: item.LastModified || null,
+      etag: item.ETag || null
+    }));
+    res.json({ ok: true, category: safePathPart(category), productId: safePathPart(productId), prefix, files, truncated: Boolean(response.IsTruncated) });
+  } catch (error) {
+    console.error('R2 list files error:', error);
+    res.status(502).json({ ok: false, error: 'Unable to list product files from R2.' });
+  }
+});
+
+app.delete('/api/storage/product-file', requireAdminUploadToken, async (req, res) => {
+  try {
+    const { objectKey, category = 'assets', productId = 'unassigned' } = req.body || {};
+    const prefix = getProductPrefix(category, productId);
+    if (!objectKey || !String(objectKey).startsWith(prefix)) {
+      return res.status(400).json({ ok: false, error: 'Invalid product file path.' });
+    }
+    await getR2Client().send(new DeleteObjectCommand({ Bucket: process.env.R2_BUCKET, Key: objectKey }));
+    res.json({ ok: true, deleted: true, objectKey });
+  } catch (error) {
+    console.error('R2 delete file error:', error);
+    res.status(502).json({ ok: false, deleted: false, error: 'Unable to delete product file from R2.' });
   }
 });
 
