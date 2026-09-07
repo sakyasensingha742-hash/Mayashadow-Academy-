@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
-import { S3Client, HeadBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, HeadBucketCommand, PutObjectCommand, PutBucketCorsCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const app = express();
@@ -108,6 +108,33 @@ app.post('/api/storage/write-test', requireAdminUploadToken, async (_req, res) =
   } catch (error) {
     console.error('R2 write test error:', error);
     res.status(502).json({ ok: false, uploaded: false, provider: 'cloudflare-r2', error: 'R2 write test failed.' });
+  }
+});
+
+app.post('/api/storage/configure-cors', requireAdminUploadToken, async (_req, res) => {
+  try {
+    const origin = process.env.FRONTEND_ORIGIN;
+    if (!origin) {
+      return res.status(503).json({ ok: false, error: 'FRONTEND_ORIGIN is not configured.' });
+    }
+    await getR2Client().send(new PutBucketCorsCommand({
+      Bucket: process.env.R2_BUCKET,
+      CORSConfiguration: {
+        CORSRules: [
+          {
+            AllowedOrigins: [origin],
+            AllowedMethods: ['PUT', 'GET', 'HEAD'],
+            AllowedHeaders: ['Content-Type', 'Content-Length'],
+            ExposeHeaders: ['ETag'],
+            MaxAgeSeconds: 3600
+          }
+        ]
+      }
+    }));
+    res.json({ ok: true, configured: true, origin });
+  } catch (error) {
+    console.error('R2 CORS configuration error:', error);
+    res.status(502).json({ ok: false, configured: false, error: 'Unable to configure R2 browser upload CORS.' });
   }
 });
 
