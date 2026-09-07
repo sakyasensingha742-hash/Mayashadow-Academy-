@@ -8,10 +8,10 @@
   }
 
   ready(function(){
-    /* Load the secure R2 uploader only on the admin asset-management page. */
+    /* Load the secure R2 uploader/file manager only on the admin asset-management page. */
     if(location.pathname.toLowerCase().indexOf("admin.html") > -1){
       var r2Script = document.createElement("script");
-      r2Script.src = "admin-r2-upload.js?v=1";
+      r2Script.src = "admin-r2-upload.js?v=2";
       r2Script.defer = true;
       document.head.appendChild(r2Script);
     }
