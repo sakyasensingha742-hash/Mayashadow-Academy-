@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Maya Shadow Academy — R2 Storage Test</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1020;color:#eef2ff;font-family:Arial,sans-serif;padding:24px}.card{width:min(620px,100%);background:#151c32;border:1px solid #2d3858;border-radius:18px;padding:30px;box-shadow:0 20px 60px #0008}h1{margin:0 0 10px;font-size:25px}p{color:#aeb8d4;line-height:1.6}.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#1c6b48;color:#baf5d5;font-size:12px;margin-bottom:16px}label{display:block;margin:22px 0 8px;font-weight:700}input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #3a4668;background:#0d1428;color:white;font-size:15px}button{margin-top:18px;width:100%;padding:13px;border:0;border-radius:10px;background:#6d5dfc;color:white;font-weight:700;font-size:15px;cursor:pointer}button:disabled{opacity:.6;cursor:wait}pre{margin-top:20px;padding:16px;border-radius:10px;background:#0a0f1e;overflow:auto;white-space:pre-wrap;word-break:break-word;color:#cbd5e1}.note{font-size:13px;color:#8995b4;margin-top:14px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <span class="badge">SECURE ADMIN TEST</span>
+    <h1>Cloudflare R2 Write Test</h1>
+    <p>This page sends one small test object through the Render backend into the private R2 bucket. Your token is sent only in the request header and is not saved.</p>
+    <label for="token">Admin Upload Token</label>
+    <input id="token" type="password" autocomplete="off" placeholder="Enter your Render ADMIN_UPLOAD_TOKEN">
+    <button id="test">Upload Test Object to R2</button>
+    <pre id="result">Ready for test.</pre>
+    <div class="note">Never paste your R2 secret/access keys here. Only use the ADMIN_UPLOAD_TOKEN.</div>
+  </main>
+  <script>
+    const token = document.getElementById('token');
+    const button = document.getElementById('test');
+    const result = document.getElementById('result');
+    const API = 'https://mayashadow-academy.onrender.com';
+    button.addEventListener('click', async () => {
+      const value = token.value.trim();
+      if (!value) { result.textContent = 'Please enter the Admin Upload Token.'; return; }
+      button.disabled = true;
+      result.textContent = 'Testing R2 write...';
+      try {
+        const response = await fetch(`${API}/api/storage/write-test`, {
+          method: 'POST',
+          headers: { 'x-admin-upload-token': value }
+        });
+        const data = await response.json();
+        result.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        result.textContent = 'Request failed. Please check that the backend is Live and try again.';
+      } finally { button.disabled = false; }
+    });
+  </script>
+</body>
+</html>
