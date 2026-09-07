@@ -3,11 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
 import { S3Client, HeadBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const app = express();
 const PORT = process.env.PORT || 10000;
-const MAX_UPLOAD_SIZE = 500 * 1024 * 1024;
 
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || true }));
 app.use(express.json({ limit: '1mb' }));
@@ -146,50 +144,37 @@ app.get('/api/storage/test', async (_req, res) => {
   }
 });
 
-app.post('/api/storage/upload-url', requireAdminUploadToken, async (req, res) => {
+app.post('/api/storage/write-test', requireAdminUploadToken, async (req, res) => {
   try {
-    const { fileName, contentType, size } = req.body || {};
-    const numericSize = Number(size);
+    const testKey = `system-tests/r2-write-test-${Date.now()}.txt`;
+    const body = Buffer.from('Maya Shadow Academy R2 write test successful.');
 
-    if (!fileName || typeof fileName !== 'string' || fileName.length > 180) {
-      return res.status(400).json({ ok: false, error: 'A valid fileName is required.' });
-    }
-
-    if (!contentType || typeof contentType !== 'string' || contentType.length > 160) {
-      return res.status(400).json({ ok: false, error: 'A valid contentType is required.' });
-    }
-
-    if (!Number.isFinite(numericSize) || numericSize <= 0 || numericSize > MAX_UPLOAD_SIZE) {
-      return res.status(400).json({
-        ok: false,
-        error: 'File size must be greater than 0 and no larger than 500 MB.'
-      });
-    }
-
-    const safeName = fileName
-      .replace(/[^a-zA-Z0-9._-]/g, '-')
-      .replace(/-+/g, '-')
-      .slice(-140);
-    const objectKey = `uploads/${Date.now()}-${crypto.randomUUID()}-${safeName}`;
-
-    const command = new PutObjectCommand({
+    await getR2Client().send(new PutObjectCommand({
       Bucket: process.env.R2_BUCKET,
-      Key: objectKey,
-      ContentType: contentType
-    });
-
-    const uploadUrl = await getSignedUrl(getR2Client(), command, { expiresIn: 900 });
+      Key: testKey,
+      Body: body,
+      ContentType: 'text/plain',
+      Metadata: {
+        purpose: 'connection-verification'
+      }
+    }));
 
     res.json({
       ok: true,
-      objectKey,
-      uploadUrl,
-      expiresIn: 900,
-      maxUploadSize: MAX_UPLOAD_SIZE
+      uploaded: true,
+      provider: 'cloudflare-r2',
+      bucket: process.env.R2_BUCKET,
+      objectKey: testKey,
+      size: body.length
     });
   } catch (error) {
-    console.error('R2 upload URL error:', error);
-    res.status(500).json({ ok: false, error: 'Unable to create upload URL.' });
+    console.error('R2 write test error:', error);
+    res.status(502).json({
+      ok: false,
+      uploaded: false,
+      provider: 'cloudflare-r2',
+      error: 'R2 write test failed.'
+    });
   }
 });
 
