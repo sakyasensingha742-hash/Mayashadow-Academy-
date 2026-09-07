@@ -3,9 +3,11 @@ import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
 import { S3Client, HeadBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const app = express();
 const PORT = process.env.PORT || 10000;
+const MAX_UPLOAD_BYTES = 100 * 1024 * 1024;
 
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || true }));
 app.use(express.json({ limit: '1mb' }));
@@ -31,6 +33,11 @@ function requireAdminUploadToken(req, res, next) {
     return res.status(401).json({ ok: false, error: 'Unauthorized.' });
   }
   next();
+}
+
+function safePathPart(value, fallback = 'misc') {
+  const cleaned = String(value || '').trim().toLowerCase().replace(/[^a-z0-9-_]+/g, '-').replace(/^-+|-+$/g, '');
+  return cleaned.slice(0, 80) || fallback;
 }
 
 app.get('/api/health', (_req, res) => {
@@ -101,6 +108,28 @@ app.post('/api/storage/write-test', requireAdminUploadToken, async (_req, res) =
   } catch (error) {
     console.error('R2 write test error:', error);
     res.status(502).json({ ok: false, uploaded: false, provider: 'cloudflare-r2', error: 'R2 write test failed.' });
+  }
+});
+
+app.post('/api/storage/presign-upload', requireAdminUploadToken, async (req, res) => {
+  try {
+    const { filename, contentType, size, category = 'assets', productId = 'unassigned' } = req.body || {};
+    if (!filename || !contentType || !Number.isFinite(Number(size))) {
+      return res.status(400).json({ ok: false, error: 'filename, contentType and size are required.' });
+    }
+    const numericSize = Number(size);
+    if (numericSize <= 0 || numericSize > MAX_UPLOAD_BYTES) {
+      return res.status(413).json({ ok: false, error: 'File size must be greater than 0 and at most 100 MB.' });
+    }
+    const safeName = String(filename).split(/[\\/]/).pop().replace(/[^a-zA-Z0-9._-]+/g, '-').slice(0, 140);
+    const ext = safeName.includes('.') ? safeName.split('.').pop().toLowerCase() : 'bin';
+    const key = `products/${safePathPart(category)}/${safePathPart(productId)}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+    const command = new PutObjectCommand({ Bucket: process.env.R2_BUCKET, Key: key, ContentType: contentType });
+    const uploadUrl = await getSignedUrl(getR2Client(), command, { expiresIn: 900 });
+    res.json({ ok: true, uploadUrl, objectKey: key, expiresIn: 900, maxUploadBytes: MAX_UPLOAD_BYTES });
+  } catch (error) {
+    console.error('R2 presign error:', error);
+    res.status(502).json({ ok: false, error: 'Unable to prepare secure R2 upload.' });
   }
 });
 
