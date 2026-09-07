@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
+import { S3Client, HeadBucketCommand } from '@aws-sdk/client-s3';
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -73,6 +74,55 @@ app.get('/api/storage/status', (_req, res) => {
       process.env.R2_BUCKET
     )
   });
+});
+
+app.get('/api/storage/test', async (_req, res) => {
+  try {
+    const required = [
+      'R2_ENDPOINT',
+      'R2_ACCESS_KEY_ID',
+      'R2_SECRET_ACCESS_KEY',
+      'R2_BUCKET'
+    ];
+
+    const missing = required.filter((name) => !process.env[name]);
+    if (missing.length) {
+      return res.status(503).json({
+        ok: false,
+        connected: false,
+        error: 'R2 configuration is incomplete.',
+        missing
+      });
+    }
+
+    const client = new S3Client({
+      region: 'auto',
+      endpoint: process.env.R2_ENDPOINT,
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID,
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
+      }
+    });
+
+    await client.send(new HeadBucketCommand({
+      Bucket: process.env.R2_BUCKET
+    }));
+
+    res.json({
+      ok: true,
+      connected: true,
+      provider: 'cloudflare-r2',
+      bucket: process.env.R2_BUCKET
+    });
+  } catch (error) {
+    console.error('R2 connection test error:', error);
+    res.status(502).json({
+      ok: false,
+      connected: false,
+      provider: 'cloudflare-r2',
+      error: 'R2 connection test failed.'
+    });
+  }
 });
 
 app.listen(PORT, () => {
