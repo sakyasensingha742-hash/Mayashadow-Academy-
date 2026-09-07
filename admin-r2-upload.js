@@ -3,7 +3,6 @@
   'use strict';
 
   const API_BASE = 'https://mayashadow-academy.onrender.com';
-  const FRONTEND_ORIGIN = 'https://mayashadow-academy-h2o5.onrender.com';
 
   function esc(value) {
     return String(value || '').replace(/[&<>'"]/g, function (char) {
@@ -81,13 +80,6 @@
       return data;
     }
 
-    async function configureCors(token) {
-      return api('/api/storage/configure-cors', {
-        method: 'POST',
-        headers: { 'x-admin-upload-token': token }
-      });
-    }
-
     async function uploadFile(file, token, productId, category) {
       const contentType = file.type || 'application/octet-stream';
       const signed = await api('/api/storage/presign-upload', {
@@ -136,8 +128,7 @@
       results.innerHTML = '';
 
       try {
-        setStatus('Securing browser access to the private R2 bucket…');
-        await configureCors(token);
+        setStatus('Preparing a temporary secure R2 upload URL…');
         const uploaded = [];
 
         for (let index = 0; index < files.length; index += 1) {
